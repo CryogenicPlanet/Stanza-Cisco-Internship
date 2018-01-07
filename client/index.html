@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html ng-app="quickbooks">
+
+<head>
+
+  <!--Import Google Icon Font-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <!--Import Angular JS-->
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-materialize/0.2.2/angular-materialize.min.js"></script>
+  <!-- Imports of Angular Modules -->
+  <!-- Core -->
+  <script type="text/javascript" src="./Modules/main.js"></script>
+  <!-- User Modules -->
+  <script type="text/javascript" src="./Modules/User/userService.js"></script>
+  <script type="text/javascript" src="./Modules/User/featuredBooksService.js"></script>
+  <script type="text/javascript" src="./Modules/User/profileService.js"></script>
+  <script type="text/javascript" src="./Modules/User/userController.js"></script>
+  <!-- Homepage Modules -->
+  <script type="text/javascript" src="./Modules/Homepage/newBooksService.js"></script>
+  <script type="text/javascript" src="./Modules/Homepage/homeController.js"></script>
+  <!-- Add Boook Modules -->
+  <script type="text/javascript" src="./Modules/addBook/addBookService.js"></script>
+  <script type="text/javascript" src="./Modules/addBook/addBookController.js"></script>
+  <!-- NavBar Modules -->
+  <script type="text/javascript" src="./Modules/Navbar/searchService.js"></script>
+  <script type="text/javascript" src="./Modules/NavBar/requests.js"></script>
+  <script type="text/javascript" src="./Modules/NavBar/borrowedBooksService.js"></script>
+  <!-- SignUp Modules -->
+  <script type="text/javascript" src="./Modules/SignUp/signUpService.js"></script>
+  <script type="text/javascript" src="./Modules/SignUp/signUpController.js"></script>
+  <!-- Login Modules -->
+  <script type="text/javascript" src="./Modules/Login/loginController.js"></script>
+  <!-- Author Modules -->
+  <script type="text/javascript" src="./Modules/Author/authorService.js"></script>
+  <script type="text/javascript" src="./Modules/Author/authorController.js"></script>
+  <!-- Genre Modules -->
+  <script type="text/javascript" src="./Modules/Genre/genreController.js"></script>
+  <script type="text/javascript" src="./Modules/Genre/genreService.js"></script>
+
+  <script type="text/javascript" src="./Modules/Service/borrowService.js"></script>
+  <!-- Import of Libraries -->
+  <script type="text/javascript" src="./Modules/Lib/sha.js"></script>
+  <script type="text/javascript" src="./Modules/Lib/sha512.js"></script>
+
+
+
+  <!--Import materialize.css-->
+  <link type="text/css" rel="stylesheet" href="./css/materialize.min.css" media="screen,projection" />
+  <!--Let browser know website is optimized for mobile-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+</head>
+
+<body bgcolor="#212121">
+  <!--Import jQuery before materialize.js-->
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="./Modules/materialize.min.js"></script>
+
+  <!-- All partial HTMLs load here -->
+  <div ng-controller="baseController">
+    <div ng-view></div>
+
+
+</body>
+
+</html>
