@@ -88,7 +88,7 @@ var addNewBookDb = async function(con, name, uaid, ugid, year) {
 
 }
 var addNewBookFile = async function(ubid, name, author, genre, year) {
-    var books = JSON.parse(fs.readFileSync('/static/books.json', 'utf8'));
+    var books = JSON.parse(fs.readFileSync('./static/books.json', 'utf8'));
     var newBook = {
         ubid: ubid,
         title: name,
@@ -97,7 +97,7 @@ var addNewBookFile = async function(ubid, name, author, genre, year) {
         year: year
     };
     books.push(newBook);
-    if (fs.writeFile("/static/books.json", JSON.stringify(books), function(err) {
+    if (fs.writeFile("./static/books.json", JSON.stringify(books), function(err) {
             if (err) throw err;
             return true;
         })) {

@@ -114,7 +114,6 @@ exports.newUser = async function(req, res, con, secret) {
     var password = req.body.pword;
     var salt = req.body.salt;
     var [user] = await con.query(`SELECT * FROM Users WHERE Email="${email}"`);
-    console.log(email);
     if (user != null) {
         res.status(400).json({
             message: "Email address is taken"
@@ -239,10 +238,10 @@ exports.userDetails = async function(req, res, con, secret) {
     // Get Basic User Details
     let [user] = await con.query(`SELECT * FROM Users WHERE UUID=${uuid}`);
     let userbooks = await con.query(`SELECT * FROM ${"`User's Book`"} WHERE User=${uuid}`);
-    console.log(`SELECT * FROM Following WHERE Following=${uuid}`);
+ //   console.log(`SELECT * FROM Following WHERE Following=${uuid}`);
     let followersTable = await con.query(`SELECT * FROM Users WHERE UUID IN (SELECT User FROM Following WHERE Following=${uuid})`);
     let followingTable = await con.query(`SELECT * FROM Users WHERE UUID IN (SELECT Following FROM Following WHERE User=${uuid})`);
-    console.log(followingTable);
+   // console.log(followingTable);
     for (var userBook of userbooks) {
         let [book] = await con.query(`SELECT * FROM Books WHERE UBID=${userBook.Book}`);
         let [author] = await con.query(`SELECT Name FROM Authors WHERE UAID=${book.Author}`); // Getting Author's Name From the AuthorID Gotten From the Second Query
@@ -257,7 +256,7 @@ exports.userDetails = async function(req, res, con, secret) {
         followers.push(new users(follower.UUID, follower.Name));
     }
     for (var follow of followingTable) {
-        console.log(follow.Following);
+    //    console.log(follow.Following);
         following.push(new users(follow.UUID, follow.Name));
     }
     var response = {
@@ -316,10 +315,10 @@ function sendMail(email, message) {
             if (error) {
                 return console.log(error);
             }
-            console.log('Message sent: %s', info.messageId);
+        //    console.log('Message sent: %s', info.messageId);
             console.log("Email alert sent");
             // Preview only available when sending through an Ethereal account
-            console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
+          //  console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
 
             // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@blurdybloop.com>
             // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...

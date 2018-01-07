@@ -31,7 +31,7 @@ exports.getSearch = function(req, res, con) {
             }
         ]
     };
-    var books = JSON.parse(fs.readFileSync('books.json', 'utf8'));
+    var books = JSON.parse(fs.readFileSync('./static/books.json', 'utf8'));
     //console.log(book);
     var fuse = new Fuse(books, options); // "list" is the item array
     console.log(req.query.search);
@@ -58,7 +58,7 @@ exports.getBooks = function(req, res, con) {
             weight: 1
         }]
     };
-    var books = JSON.parse(fs.readFileSync('/static/books.json', 'utf8'));
+    var books = JSON.parse(fs.readFileSync('./static/books.json', 'utf8'));
     var fuse = new Fuse(books, options); // "list" is the item array
     var result = fuse.search(req.query.search);
     if (result) {
