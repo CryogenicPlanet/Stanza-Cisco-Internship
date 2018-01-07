@@ -35,12 +35,14 @@
                         </span>
                         </div>
                         <div class="row">
-                            <div class="col s5">
-                                <a class="waves-effect waves-teal teal darken-2 btn-flat white-text">Follow</a>
+                            <div ng-if="!isMe">
+                                <div class="col s5">
+                                    <a class="waves-effect waves-teal teal darken-2 btn-flat white-text">Follow</a>
+                                </div>
                             </div>
-                            <div class="col s5">
+                            <!--    <div class="col s5">
                                 <a class="waves-effect waves-teal teal lighten-1 btn-flat col white-text">Chat</a>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
 

@@ -2,19 +2,49 @@
     <div class="section grey lighten-2">
         <div class="container">
             <div class="row">
-                <div class="col s8 offset-s2">
-                    <ul class="collection">
-                        <div ng-repeat="book in books">
-                            <li class="collection-item avatar">
-                                <img src="Images/books.jpeg" alt="" class="circle">
-                                <span class="title"><a href="#">{{book.item.title}}, {{book.item.year}}</a></span>
-                                <p>Written by :<a href="" ng-click="openAuthor(book.item.author)">{{book.item.author}}</a></p>
-                                <p>Genre : <a href="" ng-click="openGenre(book.item.genre)">{{book.item.genre}}</a></p>
-                                <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
-                            </li>
+                <div class="col s12">
+                    <ul class="tabs">
+                        <li class="tab col s6"><a class="active" href="#showBooks">Books</a></li>
+                        <li class="tab col s6"><a href="#showUsers">Users</a></li>
+                    </ul>
+                </div>
+                <div id="showBooks" class="col s12">
+                    <div class="row">
+                        <div class="col s8 offset-s2">
+                            <ul class="collection">
+                                <div ng-repeat="book in books">
+                                    <li class="collection-item avatar">
+                                        <img src="Images/books.jpeg" alt="" class="circle">
+                                        <span class="title"><a ng-click="openBook(book)">{{book.item.title}}</a>, {{book.item.year}}</span>
+                                        <p>Written by :<a ng-click="openAuthor(book.item.author)">{{book.item.author}}</a></p>
+                                        <p>Genre : <a ng-click="openGenre(book.item.genre)">{{book.item.genre}}</a></p>
+                                        <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+                                    </li>
+                                </div>
+                                <div ng-show="noBooks">
+                                    <li class="collection-item avatar">
+                                        <span class="title">No Books Found.</span>
+                                    </li>
+                                </div>
                         </div>
+                    </div>
+                </div>
+                <div id="showUsers" class="col s12">
+                    <div class="col s8 offset-s2">
+                        <ul class="collection">
+                            <div ng-repeat="user in users">
+                                <li class="collection-item avatar">
+                                    <img src="https://thebenclark.files.wordpress.com/2014/03/facebook-default-no-profile-pic.jpg" alt="" class="circle responsive-img">
+                                    <span class="title"><a ng-click="openUser(user)">{{user.Name}}</a></span>
+                                </li>
+                            </div>
+                            <div ng-show="noUsers">
+                                <li class="collection-item avatar">
+                                    <span class="title">No Users Found.</span>
+                                </li>
+                            </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>

@@ -3,9 +3,8 @@ const fs = require('fs');
 const Fuse = require("fuse.js");
 var exports = module.exports = {};
 
-exports.getSearch = function(req, res, con) {
-
-    var options = {
+exports.getSearch = async function(req, res, con) {
+    var optionsBooks = {
         shouldSort: true,
         threshold: 0.35,
         includeScore: true,
@@ -32,12 +31,21 @@ exports.getSearch = function(req, res, con) {
         ]
     };
     var books = JSON.parse(fs.readFileSync('./static/books.json', 'utf8'));
+    //    var users = JSON.parse(fs.readFileSync('./static/users.json', 'utf8'));
+    // var userFuse = new Fuse(users, optionsUsers)
     //console.log(book);
-    var fuse = new Fuse(books, options); // "list" is the item array
+    var bookFuse = new Fuse(books, optionsBooks); // "list" is the item array
     console.log(req.query.search);
-    var result = fuse.search(req.query.search);
-    if (result != []) {
-        res.status(200).json(result);
+    var resultBooks = bookFuse.search(req.query.search);
+ //   var resultUsers = userFuse.search(req.query.search);
+    var resultUsers = await con.query(`SELECT * FROM Users WHERE Name LIKE "${req.query.search}%"`)
+  //  console.log(`SELECT * FROM Users WHERE Name LIKE "${req.query.search}%"`);
+  //  console.log(resultUsers);
+    if (resultBooks != [] || resultUsers != []) {
+        res.status(200).json({
+            books: resultBooks,
+            users: resultUsers
+        });
     }
     else {
         res.status(400)

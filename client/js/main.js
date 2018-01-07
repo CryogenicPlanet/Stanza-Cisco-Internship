@@ -49,10 +49,10 @@ app.config(function($routeProvider) { // Making the Router Provider
 app.controller('baseController', function($scope, $location, newBooksService, borrowService, userService, searchService, requestsService, borrowedBooksService) {
     var uuid, name;
     $scope.token = userService.getToken();
-    console.log($scope.token);
+   // console.log($scope.token);
     $scope.$on('$routeChangeStart', function($event, next, current) {
         // ... you could trigger something here ...
-        console.log("Triggered")
+        //console.log("Triggered")
         $scope.token = userService.getToken();
     });
     this.initialize = function() {
@@ -62,7 +62,9 @@ app.controller('baseController', function($scope, $location, newBooksService, bo
     }
     $scope.myFunct = function(keyEvent) {
         if (keyEvent.which === 13) {
-            $location.path(`/search/${$scope.search}`);
+            console.log($scope.toSearch);
+            var search = document.getElementById("search").value;
+            $location.path(`/search/${search}`);
         }
     }
     $scope.openUser = function() {
