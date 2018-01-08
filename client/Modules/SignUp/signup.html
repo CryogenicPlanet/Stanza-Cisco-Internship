@@ -58,7 +58,7 @@
                 </div>
             </div>
         </div>
-        <div ng-show="Follow">
+        <div ng-show="followSearch">
             <div class="row">
                 <div class="col s4 offset-s4">
                     <div class="card white">
@@ -72,9 +72,33 @@
                                         <i class="material-icons">close</i>
                                     </div>
                                 </form>
+                                <button class="btn waves-effect waves-light" type="submit" ng-click="endFollow()" name="action">Next  <i class="material-icons right">send</i></button>
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+            <div ng-show="followResults">
+                <div class="col s8 offset-s2">
+                    <ul class="collection">
+                        <div ng-repeat="user in users">
+                            <li class="collection-item avatar">
+                                <img src="https://thebenclark.files.wordpress.com/2014/03/facebook-default-no-profile-pic.jpg" alt="" class="circle responsive-img">
+                                <span class="title"><a ng-click="openUser(user)">{{user.Name}}</a></span>
+                                <div ng-if="followed[{{user.UUID}}] != true">
+                                    <a ng-click="follow(user)" class="waves-effect waves-light btn">Follow</a>
+                                </div>
+                                <div ng-if="followed[{{user.UUID}}] == true">
+                                    <a ng-click="follow(user)" class="waves-effect waves-light btn white black-text">UnFollow</a>
+                                </div>
+                            </li>
+                        </div>
+                        <div ng-show="noUsers">
+                            <li class="collection-item avatar">
+                                <span class="title">No Users Found.</span>
+                            </li>
+                        </div>
+                    </ul>
                 </div>
             </div>
         </div>

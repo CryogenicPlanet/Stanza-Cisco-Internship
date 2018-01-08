@@ -51,6 +51,10 @@ exports.getSearch = async function(req, res, con) {
         res.status(400)
     }
 }
+exports.getUsers = async function(req,res,con){
+     var resultUsers = await con.query(`SELECT * FROM Users WHERE Name LIKE "${req.query.search}%"`);
+     res.status(200).json(resultUsers);
+}
 exports.getBooks = function(req, res, con) {
     console.log(req.query.search)
     var options = {
@@ -79,22 +83,8 @@ exports.getBooks = function(req, res, con) {
 
 }
 exports.getAuthor = async function(req, res, con) {
-    var options = {
-        shouldSort: true,
-        threshold: 0.2,
-        includeScore: true,
-        location: 0,
-        distance: 100,
-        maxPatternLength: 32,
-        minMatchCharLength: 1,
-        keys: [{
-            name: 'Name',
-            weight: 1
-        }]
-    };
-    let author = await con.query(`SELECT * FROM Authors`);
-    var fuse = new Fuse(author, options); // "list" is the item array
-    var result = fuse.search(req.query.search);
+    let result = await con.query(`SELECT * FROM Authors WHERE Name LIKE "${req.query.search}%"`);
+    
     if (result) {
         res.status(200).json(result);
     }
@@ -103,23 +93,7 @@ exports.getAuthor = async function(req, res, con) {
     }
 }
 exports.getGenre = async function(req, res, con) {
-    var options = {
-        shouldSort: true,
-        threshold: 0.2,
-        includeScore: true,
-        location: 0,
-        distance: 100,
-        maxPatternLength: 32,
-        minMatchCharLength: 1,
-        keys: [{
-            name: 'Name',
-            weight: 1
-        }]
-    };
-    console.log(req.query.search);
-    let genre = await con.query(`SELECT * FROM Genres`);
-    var fuse = new Fuse(genre, options); // "list" is the item array
-    var result = fuse.search(req.query.search);
+   let result = await con.query(`SELECT * FROM Genres WHERE Name LIKE "${req.query.search}%"`);
     if (result) {
         res.status(200).json(result);
     }

@@ -16,6 +16,7 @@ var books = require("./modules/books.js");
 var requests = require("./modules/requests.js");
 var returns = require("./modules/returns.js");
 var statusofbooks = require("./modules/statusofbooks.js");
+var follow = require("./modules/follow.js");
 //Server Don't worry about this
 var express = require('express'); // Framework for Node
 var app = express(); // Establishing Express App
@@ -112,11 +113,23 @@ app.post('/removeFeaturedBooks', function(req, res) {
 app.post('/getBookDetails', function(req, res) {
    books.getBookDetails(req, res, con);
 });
+app.post('/follow',function(req, res) {
+    follow.follow(req,res,con,app.get('jwtTokenSecret'));
+});
+app.post('/unfollow',function(req, res) {
+    follow.unfollow(req,res,con,app.get('jwtTokenSecret'));
+});
+app.post('/followed',function(req, res) {
+   follow.followed(req,res,con,app.get('jwtTokenSecret')); 
+});
 
 // Handling Requests of type GET, used to get Data from the server or databae
 app.get("/getSalt",function(req, res) {
    user.getSalt(req,res,con); 
 });
+app.get("/searchUser",function(req, res) {
+    search.getUser(req,res,con);
+})
 app.get('/verify', function(req, res) { // Request to verify email after signup, This request is from the browser after email link is clicked
     user.verify(req, res, con,app.get('jwtTokenSecret')); // Calling function .verify() of Object User passing the input, output and database connection
 });

@@ -36,8 +36,15 @@
                         </div>
                         <div class="row">
                             <div ng-if="!isMe">
-                                <div class="col s5">
-                                    <a class="waves-effect waves-teal teal darken-2 btn-flat white-text">Follow</a>
+                                <div ng-if="followed">
+                                    <div class="col s5">
+                                        <a ng-click="follow()" class="waves-effect waves-teal white btn-flat black-text">UnFollow</a>
+                                    </div>
+                                </div>
+                                <div ng-if="!followed">
+                                    <div class="col s5">
+                                        <a ng-click="follow()" class="waves-effect waves-teal teal darken-2 btn-flat white-text">Follow</a>
+                                    </div>
                                 </div>
                             </div>
                             <!--    <div class="col s5">
@@ -138,33 +145,6 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col s12">
-                        <ul class="tabs">
-                            <li class="tab col s6"><a href="#authors">Authors Read</a></li>
-                            <li class="tab col s6"><a href="#genres">Genres Read</a></li>
-                        </ul>
-                    </div>
-                    <div id="authors" class="col s12">
-                        <div class="collection">
-                            <a href="" class="collection-item">Author</a>
-                            <a href="" class="collection-item">Author</a>
-                            <a href="" class="collection-item">Author</a>
-                            <a href="" class="collection-item">Author</a>
-                            <a href="" class="collection-item">Author</a>
-                        </div>
-                    </div>
-                    <div id="genres" class="col s12">
-                        <div class="collection">
-                            <a href="" class="collection-item">Alvin</a>
-                            <a href="" class="collection-item">Alvin</a>
-                            <a href="" class="collection-item">Alvin</a>
-                            <a href="" class="collection-item">Alvin</a>
-                            <a href="" class="collection-item">Alvin</a>
-                        </div>
-                    </div>
-                </div>
-
             </div>
         </div>
     </div>
