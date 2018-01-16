@@ -21,7 +21,7 @@ app.factory('addBookService', function($http, userService) {
                 cache: true,
                 url: `./addBook` // Url
             }).then(function(responses) {
-
+                return responses.data;
             });
         }
     }

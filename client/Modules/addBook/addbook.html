@@ -1,4 +1,4 @@
-<div class="section grey lighten-2">
+<div class="section grey darken-4">
     <div class="container">
         <div class="card white">
             <div class="card-content">
@@ -7,7 +7,7 @@
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <input placeholder="Angels and Demons" id="book" type="text" class="validate" ng-keypress="bookSearch($event)" ng-model="searchBook" value="a">
+                        <input id="book" type="text" class="validate" ng-keypress="bookSearch($event)" ng-model="searchBook" value="a">
                         <label class = "active" for="book">Book Name</label>
                     </div>
                 </div>
@@ -91,7 +91,7 @@
                                         <div ng-show="listGenre">
                                             <div ng-repeat="genre in genres">
                                                 <p>
-                                                    <input name="genres" type="radio" id="{{genre.UGID}}" />
+                                                    <input name="genres" type="radio" id="{{genre.UGID}}" value="{{genre.UGID}}" />
                                                     <label for="{{genre.UGID}}" class="black-text">{{genre.Name}}</label>
                                                 </p>
                                             </div>
@@ -140,7 +140,7 @@
                                         <div ng-show="listAuthors">
                                             <div ng-repeat="author in authors">
                                                 <p>
-                                                    <input name="authors" type="radio" id="{{author.UAID}}" />
+                                                    <input name="authors" type="radio" id="{{author.UAID}}" value="{{author.UAID}}" />
                                                     <label for="{{author.UAID}}" class="black-text">{{author.Name}}</label>
                                                 </p>
                                             </div>
@@ -155,14 +155,14 @@
                     </div>
                     <div class="row">
                         <div class="input-field col s6">
-                            <input id="year" type="number" data-length="4">
+                            <input id="year" type="number" ng-model="year" data-length="4">
                             <label for="year">Years</label>
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <textarea id="description" class="materialize-textarea" data-length="120"></textarea>
+                        <textarea id="description" ng-model="description" class="materialize-textarea" data-length="256"></textarea>
                         <label for="description">Description</label>
                     </div>
                 </div>
@@ -180,7 +180,7 @@
                 </div> -->
                 <div class="row">
                     <div class="col s4 offset-s4">
-                        <button class="btn waves-effect waves-light" type="submit" ng-click="addBook()" name="action">Submit Your book
+                        <button class="btn waves-effect waves-light teal accent-4" type="submit" ng-click="addBook()" name="action">Submit Your book
                              <i class="material-icons right">send</i>
                        </button>
                     </div>

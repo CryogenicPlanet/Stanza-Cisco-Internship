@@ -35,6 +35,7 @@ mysql.createConnection({
     password: "",
     database: "c9"
 }).then(function(connection) { con = connection });
+
 app.use("/", express.static("./client/")); // HERE
 /*app.get('/js/main.js',function(req, res) {
    res.sendfile("./client/js/main.js") 

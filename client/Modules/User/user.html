@@ -19,10 +19,10 @@
         <img id="book" src="Images/loading/book.png" />
     </div>
 </div>
-<div class="section grey lighten-2" ng-show="userPage">
+<div class="section grey darken-4" ng-show="userPage">
     <div class="row">
         <div class="s10 offset-s2">
-            <div class="card-panel grey lighten-4 col s10 offset-s1 z-depth-0">
+            <div class="card-panel white col s10 offset-s1 z-depth-0">
                 <div class="row valign-wrapper">
                     <div class="col s3">
                         <img src="https://thebenclark.files.wordpress.com/2014/03/facebook-default-no-profile-pic.jpg" alt="" class="circle responsive-img">
@@ -31,7 +31,7 @@
                     <div class="col s4">
                         <div class="row">
                             <span class="black-text col s8 offset-s2">
-                            <h5>{{name}}</h5>
+                            <h4>{{name}}</h4>
                         </span>
                         </div>
                         <div class="row">
@@ -57,10 +57,10 @@
                         <h5>Featured Books</h5>
                         <div ng-show="featured == 0">
                             <div ng-if="isMe">
-                                <span class="flow-text">You have no featured books, go select some from your books</span>
+                                <span class="flow-text"><h6> You have no featured books, go select some from your books</h6></span>
                             </div>
                             <div ng-if="!isMe">
-                                <span class="flow-text">This person has no featured books</span>
+                                <span class="flow-text"><h6>This person has no featured books</h6></span>
                             </div>
                         </div>
                         <div ng-show="featured > 0 && featured <= 3">
@@ -95,7 +95,7 @@
     </div>
     <div class="row">
         <div class="col s6 offset-s1" id="all">
-            <div class="card-panel grey lighten-4 z-depth-0">
+            <div class="card-panel grey darken-2 z-depth-0">
                 <div ng-show="books.length == 0">
                     <div ng-if="isMe">
                         <h5>You have no books</h5>
@@ -114,7 +114,7 @@
                                 </p>
                                 <div ng-show="featured < 6">
                                     <div ng-if="isMe">
-                                        <a href="" class="btn waves-effect" ng-click="addFeaturedBooks(book)">Add to featured</a>
+                                        <a href="" class="btn waves-effect teal accent-4" ng-click="addFeaturedBooks(book)">Add to featured</a>
                                     </div>
                                 </div>
                                 <p class="truncate"><a href="" class="modal-trigger" ng-click="openModal(book, false)">{{book.description}}</a></p>
@@ -126,7 +126,7 @@
             </div>
         </div>
         <div class="col s3 offset-s1" id="sidebar">
-            <div class="card-panel grey lighten-4 z-depth-0">
+            <div class="card-panel grey darken-2 z-depth-0">
                 <div class="row">
                     <div class="col s12">
                         <ul class="tabs">
@@ -148,7 +148,7 @@
             </div>
         </div>
     </div>
-    <div id="modal" class="modal modal-fixed-footer grey lighten-3">
+    <div id="modal" class="modal modal-fixed-footer white">
         <div class="row">
             <div class="modal-content">
                 <div class="col s6 black">
@@ -163,12 +163,12 @@
 
             </div>
         </div>
-        <div class="modal-footer grey lighten-3">
+        <div class="modal-footer white">
             <div ng-show="modalfeatured">
-                <a ng-click="removeFeaturedBooks(modalbook)" class="modal-action modal-close waves-effect waves-green btn-flat teal s2 white-text">Remove from featured books</a>
+                <a ng-click="removeFeaturedBooks(modalbook)" class="modal-action modal-close waves-effect waves-green btn-flat teal accent-4 s2 white-text">Remove from featured books</a>
             </div>
             <div ng-show="!modalfeatured">
-                <a ng-click="borrow(modalbook)" id="borrowBtn" class="modal-action modal-close waves-effect waves-green btn-flat teal s2 white-text">Borrow</a>
+                <a ng-click="borrow(modalbook)" id="borrowBtn" class="modal-action modal-close waves-effect waves-green btn-flat teal accent-4 s2 white-text">Borrow</a>
             </div>
         </div>
     </div>

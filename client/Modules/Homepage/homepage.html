@@ -3,7 +3,7 @@
 </script>
 <div class="spinner" ng-show="loading">
     <link rel="stylesheet" type="text/css" href="css/loading.css" />
-    <div id="loader" bgcolor="#212121">
+    <div id="loader" bgcolor="#ffffff">
         <img id="dot" class="dots_r" src="Images/loading/dot.svg" />
         <img id="dot1" class="dots_r" src="Images/loading/dot1.svg" />
         <img id="dot2" class="dots_r" src="Images/loading/dot2.svg" />
@@ -23,7 +23,7 @@
     </div>
 </div>
 
-<div class="section grey lighten-2" ng-show="page">
+<div class="section grey darken-4" ng-show="page">
     <div ng-switch on="view">
         <div ng-switch-when="books">
             <div class="container">
@@ -42,13 +42,17 @@
                                     <p>
                                         <!--   <input id="lenderId" type="hidden" ng-model="llenderId" value="{{book.uuid}}"> 
                                 <input id="bookId" type="hidden" ng-model="lbookId" value="{{book.ubid}}"> -->
-                                        <a ng-click="borrow(book)" id="borrowBtn" class="waves-effect waves-teal btn orange accent-4">Borrow this Book</a>
-
+                                        
+                                        <a ng-click="borrow(book)" id="borrowBtn" class="waves-effect waves-teal btn teal accent-4">Borrow this Book</a>
+                                        
                                     </p>
                                 </div>
                                 <div class="card-reveal">
-                                    <span class="card-title grey-text text-darken-4">{{book.bookname}},{{book.year}}, By {{book.author}}.Genre: {{book.genre}}<i class="material-icons right">close</i></span>
-                                    <p>{{book.description}}</p>
+                                    <span class="card-title grey-text text-darken-4"><h5>{{book.bookname}}</h5> <i class="material-icons right">close</i></span>
+                                    <div><h6>Published year: {{book.year}}</h6></div>
+                                    <div><h6> By: {{book.author}} </h6></div>
+                                    <div> <h6>Genre: {{book.genre}} </h6></div> 
+                                  <p>Description: {{book.description}}</p>
                                 </div>
                             </div>
                         </div>
@@ -58,8 +62,8 @@
         </div>
     </div>
     <div class="fixed-action-btn left-align" style="left: 23px; right: auto;">
-        <a ng-click="addBook()" class="waves-effect waves-light btn btn-large hoverable btn-floating">
-        <i class = "material-icons">library_add</i>
+        <a ng-click="addBook()" class="waves-effect waves-light btn btn-large hoverable btn-floating red darken-4">
+        <i class = "material-icons">add</i>
      </a>
     </div>
     

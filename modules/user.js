@@ -3,6 +3,7 @@ var jwt = require('jsonwebtoken'); // Json Web Token Library; Used for authentic
 var sha512 = require('sha512'); // Sha512 Library, Sha512 is a hash
 var nodemailer = require('nodemailer'); // Nodemailer is an SMTP mailer for node
 var randomstring = require("randomstring"); // Cmon What does this suggest?
+var sanitizer = require('sanitizer');
 
 var exports = module.exports = {}; //  This is exporting this variable, making it's scope public and accesable my any other file
 
@@ -47,6 +48,8 @@ exports.loginUser = async function(req, res, con, secret) { // Function to Login
 exports.getSalt = async function(req, res, con) {
     var salt;
     var email = req.headers['x-login-email'];
+  //  var test = sanitizer.escape("Hello World");
+    console.log(test);
     if (email == "new") {
         salt = randomstring.generate(8);
     }
@@ -120,6 +123,9 @@ exports.newUser = async function(req, res, con, secret) {
         });
     }
     else {
+        email = sanitizer.escape(email);
+        name = sanitizer.escape(name);
+        
         var insert = await con.query("INSERT INTO Users (Name, Email,Password,Salt) VALUES ('" + name + "','" + email + "','" + password + "','" + salt + "')");
         var payload = {
             email: email,
