@@ -1,6 +1,6 @@
 //Environment Variables
 var port = process.env.PORT; // Port of server
-
+var dbPassword = process.env.Db;
 //Libraries
 var getenv = require('getenv'); // Library for Enviroment Variables, Used for Db Conn
 var mysql = require('promise-mysql'); // Mysql Library, With Node Promises
@@ -27,12 +27,13 @@ app.set('jwtTokenSecret', 'D2A8EC7BF22AECBEB745FDAAA892CDCD8A678D4E94C6452D58AD9
 var server = app.listen(port); // Set Port
 
 
+
 //DataBase connection using promises
 var con = null; 
 mysql.createConnection({
     host: getenv('IP'),
     user: getenv('C9_USER'),
-    password: "",
+    password: "Cisco",
     database: "c9"
 }).then(function(connection) { con = connection });
 

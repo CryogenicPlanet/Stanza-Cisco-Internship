@@ -34,7 +34,7 @@ app.config(function($routeProvider) { // Making the Router Provider
 
         })
         .when("/books/:bookName", {
-            templateUrl: "/Pages/books.html",
+            templateUrl: "/Modules/Books/books.html",
             controller: "showBookController"
         })
         .when("/signup", {
@@ -48,8 +48,12 @@ app.config(function($routeProvider) { // Making the Router Provider
 });
 app.controller('baseController', function($scope, $location, newBooksService, borrowService, userService, searchService, requestsService, borrowedBooksService) {
     var uuid, name;
+    $scope.side_mine_selected;
+    $scope.side_user_selected;
+    $scope.side_borrow_selected;
+    $scope.side_lent_selected;
     $scope.token = userService.getToken();
-   // console.log($scope.token);
+    // console.log($scope.token);
     $scope.$on('$routeChangeStart', function($event, next, current) {
         // ... you could trigger something here ...
         //console.log("Triggered")
@@ -59,6 +63,18 @@ app.controller('baseController', function($scope, $location, newBooksService, bo
         userService.getDetails();
         uuid = userService.getUuid();
         name = userService.getUsername();
+        angular.element(document).ready(function() {
+            $('.button-collapse').sideNav({
+                menuWidth: 300, // Default is 300
+                edge: 'right', // Choose the horizontal origin
+                closeOnClick: false, // Closes side-nav on <a> clicks, useful for Angular/Meteor
+                draggable: false, // Choose whether you can drag to open on touch screens,
+                onOpen: function(el) {
+                    /* Do Stuff */
+                }, // A function to be called when sideNav is opened
+                onClose: function(el) { /* Do Stuff */ }, // A function to be called when sideNav is closed
+            });
+        });
     }
     $scope.myFunct = function(keyEvent) {
         if (keyEvent.which === 13) {
@@ -72,10 +88,11 @@ app.controller('baseController', function($scope, $location, newBooksService, bo
         $location.path("/username/" + uuid + "/" + name);
     }
     $scope.openMineModal = function() {
-        $('#modal1').modal('open');
+        //  $('#modal1').modal('open');
+        //  $('.button-collapse').sideNav('show');
     }
     $scope.openOtherModal = function() {
-        $('#modal2').modal('open');
+        //$('#modal2').modal('open');
     }
     $scope.openBorrowedModal = function() {
         $('#modal3').modal('open');
@@ -91,7 +108,7 @@ app.controller('baseController', function($scope, $location, newBooksService, bo
                     $scope.expelreplyid(request.URID);
                 }
                 if (requests.length == 0) {
-                    Materialize.toast('<p class="flow-text green-text">You have no book <br> requests!!</p>', 2000);
+                    //Materialize.toast('<p class="flow-text green-text">You have no book <br> requests!!</p>', 2000);
                 }
             })
             .catch(function(err) {
@@ -103,7 +120,7 @@ app.controller('baseController', function($scope, $location, newBooksService, bo
             .then(function(sentrequests) {
                 $scope.sentrequests = sentrequests;
                 if (sentrequests.length == 0) {
-                    Materialize.toast('<p class="flow-text green-text">You have not sent any book <br> requests!!</p>', 2000);
+                    //Materialize.toast('<p class="flow-text green-text">You have not sent any book <br> requests!!</p>', 2000);
                 }
             })
             .catch(function(err) {
@@ -143,7 +160,7 @@ app.controller('baseController', function($scope, $location, newBooksService, bo
                     $scope.expelreturnid(borrowedbook.UBOID);
                 }
                 if (borrowedbooks.length == 0) {
-                    Materialize.toast('<p class="flow-text green-text">You have no borrowed books</p>', 2000);
+                    // Materialize.toast('<p class="flow-text green-text">You have no borrowed books</p>', 2000);
                 }
             })
             .catch(function(err) {
@@ -182,7 +199,7 @@ app.controller('baseController', function($scope, $location, newBooksService, bo
                     $scope.expeltakebackid(lentbook.UBOID);
                 }
                 if (lentbooks.length == 0) {
-                    Materialize.toast('<p class="flow-text green-text">You haven\'t lent any books</p>', 2000);
+                    // Materialize.toast('<p class="flow-text green-text">You haven\'t lent any books</p>', 2000);
                 }
             })
             .catch(function(err) {
@@ -214,38 +231,4 @@ app.controller('baseController', function($scope, $location, newBooksService, bo
             takebackarr.splice(takebackarr.indexOf(id));
     }
     this.initialize();
-});
-
-app.controller('showBookController', function($scope, $location, $routeParams, addBookService) {
-    this.initialize = function() {
-        $scope.bookpage = false;
-        $scope.bookloading = true;
-    }
-    var bookname = $routeParams.bookName;
-    console.log(bookname);
-    var data = {
-        name: bookname
-    }
-    addBookService.getBookDetails(data)
-        .then(function(bookdetails) {
-            console.log(bookdetails);
-            $scope.bookname = bookname;
-            $scope.authorname = bookdetails[0].authorname;
-            $scope.genrename = bookdetails[0].genrename;
-            $scope.year = bookdetails[0].year;
-            $scope.owners = bookdetails[0].owners;
-            // $scope.authorbooks = authorbooks;
-        }).finally(function() {
-            $scope.bookloading = false;
-            $scope.bookpage = true;
-        });
-
-
-    $scope.openAuthor = function(authorname) {
-        $location.path("/authors/" + authorname);
-    }
-
-    $scope.openGenre = function(genrename) {
-        $location.path("/genres/" + genrename);
-    }
 });

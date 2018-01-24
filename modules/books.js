@@ -23,7 +23,7 @@ exports.addBook = async function(req, res, con, secret) {
         book.image = sanitizer.escape(req.body.image);
     }
     else {
-        book.image = "/Images/books.jpeg";
+        book.image = "https://raw.githubusercontent.com/CryogenicPlanet/Cisco-internship/master/Images/books.jpeg";
     }
     if (req.body.ubid) { // If Book Already Exists and User Chooses This
         addUserbook(con, uuid, req.body.ubid, sanitizer.escape(req.body.description), sanitizer.escape(book.image));

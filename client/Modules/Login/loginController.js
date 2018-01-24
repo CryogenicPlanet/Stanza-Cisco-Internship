@@ -10,6 +10,7 @@ app.controller('loginController', function($scope, $location, $timeout, userServ
     }
 
     $scope.signup = function() {
+        /*
         if ($scope.sPword != $scope.sConfirmpword) {
             Materialize.toast('<p class = "flow-text">Error, the passwords do not match</p>', 4000);
         }
@@ -34,7 +35,8 @@ app.controller('loginController', function($scope, $location, $timeout, userServ
                         });
                 });
 
-        }
+        }*/
+        $location.path("/signup")
     }
    
 

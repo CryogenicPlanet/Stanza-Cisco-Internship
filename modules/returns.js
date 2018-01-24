@@ -16,8 +16,8 @@ exports.getBorrowedBooks = async function(req, res, con,secret) { // whatever bo
             uuid = decoded.uuid;
         }
     });
-    var borrows = await con.query(`SELECT * FROM Borrowed WHERE Borrower="${uuid}" ORDER BY "${"Date of Response"}"`);
-
+       console.log("test");
+    var borrows = await con.query(`SELECT * FROM Borrowed WHERE Borrower="${uuid}" ORDER BY ${"`Date of Response`"} DESC`);
     function newBorrow(UBOID, Bookname, Lender, Borrower, LenderID, BorrowerID, Outstanding, ReturnRequest, borrowDate) {
         this.UBOID = UBOID;
         this.Bookname = Bookname;

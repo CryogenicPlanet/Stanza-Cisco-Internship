@@ -1,24 +1,30 @@
 <div ng-controller="searchController">
+    <style type = "text/css">
+        *
+        {
+            border:#263238;
+        }
+    </style>
     <div class="section grey darken-4">
         <div class="container">
             <div class="row">
-                <div class="col s12">
+                <div class="col s10">
                     <ul class="tabs">
-                        <li class="tab col s6"><a class="active" href="#showBooks"><div class="teal-text text-accent-4">Books</div></a></li>
-                        <li class="tab col s6"><a href="#showUsers"><div class="teal-text text-accent-4">Users</div></a></li>
+                        <li class="tab col s6 blue-grey darken-4"><a class="active" href="#showBooks"><div class="teal-text text-accent-4">Books</div></a></li>
+                        <li class="tab col s6 blue-grey darken-4"><a href="#showUsers"><div class="teal-text text-accent-4">Users</div></a></li>
                     </ul>
                 </div>
                 <div id="showBooks" class="col s12">
                     <div class="row"></div>
                     <div class="row">
-                        <div class="col s8 offset-s2">
+                        <div class="col s10 grey darken-4">
                             <ul class="collection">
                                 <div ng-repeat="book in books">
-                                    <li class="collection-item avatar">
+                                    <li class="collection-item avatar blue-grey darken-4">
                                         <img src="Images/books.jpeg" alt="" class="circle">
-                                        <span class="title"><a ng-click="openBook(book)">{{book.item.title}}</a>, {{book.item.year}}</span>
-                                        <p>Written by :<a ng-click="openAuthor(book.item.author)">{{book.item.author}}</a></p>
-                                        <p>Genre : <a ng-click="openGenre(book.item.genre)">{{book.item.genre}}</a></p>
+                                        <span class="title teal-text text-accent-4"><a ng-click="openBook(book)">{{book.item.title}}</a>, {{book.item.year}}</span>
+                                        <p class='teal-text text-accent-4'>Written by: <a ng-click="openAuthor(book.item.author)">{{book.item.author}}</a></p>
+                                        <p class='teal-text text-accent-4'>Genre: <a ng-click="openGenre(book.item.genre)">{{book.item.genre}}</a></p>
                                         <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
                                     </li>
                                 </div>
@@ -31,7 +37,7 @@
                     </div>
                 </div>
                 <div id="showUsers" class="col s12">
-                    <div class="col s8 offset-s2">
+                    <div class="col s10">
                         <ul class="collection">
                             <div ng-repeat="user in users">
                                 <li class="collection-item avatar">

@@ -49,7 +49,7 @@ exports.getSalt = async function(req, res, con) {
     var salt;
     var email = req.headers['x-login-email'];
   //  var test = sanitizer.escape("Hello World");
-    console.log(test);
+ //   console.log(test);
     if (email == "new") {
         salt = randomstring.generate(8);
     }
@@ -106,7 +106,7 @@ exports.followerBooks = async function(req, res, con, secret) { // Function to c
                   2. Push this Object to the end array newbooks[]
         */
     } // The Above Stated process is repeated for every followers new book.
-
+  //  console.log(newbooks);
     res.status(200).json(newbooks); // The array of all these book objects is returned.
 };
 
@@ -240,7 +240,7 @@ exports.userDetails = async function(req, res, con, secret) {
         this.uuid = uuid;
         this.name = username
     }
-    console.log(uuid);
+  //  console.log(uuid);
     // Get Basic User Details
     let [user] = await con.query(`SELECT * FROM Users WHERE UUID=${uuid}`);
     let userbooks = await con.query(`SELECT * FROM ${"`User's Book`"} WHERE User=${uuid}`);

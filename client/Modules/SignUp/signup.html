@@ -33,7 +33,51 @@
 <div style="background-color:#eeeeee; !important" ng-show="signupPage">
 
     <div ng-controller="signupController">
+        <div ng-show="signUp">
+            <div class="row">
+                <div class="col s12 center-align grey-text text-lighten-3">
+                    <h4> Create an account </h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s4 offset-s4">
+                    <div class="card-panel grey lighten-3">
+                        <div class="card-action">
+                            <div class="row">
+                                <label for="signupname"><div class="grey-text text-darken-3"><b>Name</b></div></label>
+                                <div class="input-field col s12">
+                                    <input id="signupname" type="text" ng-model="sName" class="validate">
+                                </div>
 
+                            </div>
+                            <div class="row">
+                                <label for="signupemail"><div class="grey-text text-darken-3"><b>Email</b></div></label>
+                                <div class="input-field col s12">
+                                    <input id="signupemail" type="email" ng-model="sEmail" class="validate">
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <label for="signuppassword"><div class="grey-text text-darken-3"><b>Create Password</b></div></label>
+                                <div class="input-field col s12">
+                                    <input id="signuppassword" type="password" ng-model="sPword" class="validate">
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <label for="confirmpassword"><div class="grey-text text-darken-3"><b>Confirm Password</b></div></label>
+                                <div class="input-field col s12">
+                                    <input id="confirmpassword" type="password" ng-model="sConfirmpword" class="validate">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <button class="btn waves-effect waves-teal teal accent-4" type="button" ng-click="signup();" name="action">Submit<i class="material-icons right"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div ng-show="verifyShow">
             <div class="row">
                 <div class="col s4 offset-s4">

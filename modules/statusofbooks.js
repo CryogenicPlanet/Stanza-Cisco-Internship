@@ -3,7 +3,7 @@ const nodemailer = require('./usermail.js');
 
 var exports = module.exports = {};
 
-exports.getLentBooks = async function(req, res, con,secret) {
+exports.getLentBooks = async function(req, res, con, secret) {
     var lentbooks = [];
     var token = req.body.token || req.query.token || req.headers['x-access-token'];
     var uuid;
@@ -16,7 +16,13 @@ exports.getLentBooks = async function(req, res, con,secret) {
             uuid = decoded.uuid;
         }
     });
-    var lent = await con.query(`SELECT * FROM Borrowed WHERE Lender="${uuid} ORDER BY ${"Date of Response"}"`);
+    console.log(uuid);
+    var date = "`Date of Response`"
+    var lent = await con.query(`SELECT * FROM Borrowed WHERE Lender= ${uuid} ORDER BY '${date}' DESC`);
+    console.log("test");
+
+    console.log(`SELECT * FROM Borrowed WHERE Lender= ${uuid} ORDER BY '${date}' DESC`);
+    console.log(lent);
 
     function newLend(UBOID, Bookname, Borrower, Lender, BorrowerID, LenderID, Outstanding, ReturnRequest, borrowDate) {
         this.UBOID = UBOID;
@@ -34,7 +40,8 @@ exports.getLentBooks = async function(req, res, con,secret) {
         var date = lend["Date of Response"];
         date = date.toString();
         var datestring = date.substring(4, 15);
-        console.log(datestring);
+        console.log(lend);
+      //  console.log(datestring);
         let [borrowname] = await con.query(`SELECT Name FROM Users WHERE UUID="${lend.Borrower}"`);
         borrowname = borrowname.Name;
         let [lendname] = await con.query(`SELECT Name FROM Users WHERE UUID="${lend.Lender}"`);

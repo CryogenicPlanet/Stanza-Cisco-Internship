@@ -28,10 +28,11 @@
                         <img src="https://thebenclark.files.wordpress.com/2014/03/facebook-default-no-profile-pic.jpg" alt="" class="circle responsive-img">
                         <!-- notice the "circle" class -->
                     </div>
-                    <div class="col s4">
+                    <!--Featured book next to profile pic-->
+                    <div class="col s3">
                         <div class="row">
                             <span class="black-text col s8 offset-s2">
-                            <h4>{{name}}</h4>
+                            <h3>{{name}}</h3>
                         </span>
                         </div>
                         <div class="row">
@@ -43,7 +44,7 @@
                                 </div>
                                 <div ng-if="!followed">
                                     <div class="col s5">
-                                        <a ng-click="follow()" class="waves-effect waves-teal teal darken-2 btn-flat white-text">Follow</a>
+                                        <a ng-click="follow()" class="waves-effect waves-teal teal darken-2 btn-flat black-text">Follow</a>
                                     </div>
                                 </div>
                             </div>
@@ -52,7 +53,8 @@
                             </div> -->
                         </div>
                     </div>
-
+                    
+                    <!-- featured books -->
                     <div class="col s4" id="featured">
                         <h5>Featured Books</h5>
                         <div ng-show="featured == 0">
@@ -89,10 +91,13 @@
                             </div>
                         </div>
                     </div>
+                    
+                    
                 </div>
             </div>
         </div>
     </div>
+    <!--Feautred Books and Follower stuff-->
     <div class="row">
         <div class="col s6 offset-s1" id="all">
             <div class="card-panel grey darken-2 z-depth-0">
@@ -110,7 +115,7 @@
                             <li class="collection-item avatar">
                                 <img ng-src="{{book.image}}" alt="" class="circle materialboxed">
                                 <span class="title"><a href = "" class = "modal-trigger" ng-click = "openModal(book, false)">{{book.bookname}}</a></span>
-                                <p>By <a href="" ng-click="openAuthor(book.author)">{{book.author}}</a>
+                                <p>By: <a href="" ng-click="openAuthor(book.author)">{{book.author}}</a>
                                 </p>
                                 <div ng-show="featured < 6">
                                     <div ng-if="isMe">
@@ -125,8 +130,11 @@
                 </div>
             </div>
         </div>
-        <div class="col s3 offset-s1" id="sidebar">
-            <div class="card-panel grey darken-2 z-depth-0">
+        
+        
+        <!--Followers tab-->
+        <div class="col s4 offset-s1" id="sidebar">
+            <div class="card-panel grey darken-1 z-depth-0">
                 <div class="row">
                     <div class="col s12">
                         <ul class="tabs">
@@ -139,7 +147,7 @@
                             <div ng-repeat="follower in followers"> <a href="" ng-click="openUser(follower)" class="collection-item">{{follower.name}}</a></div>
                         </div>
                     </div>
-                    <div id="following" class="col s12">
+                    <div id="following" class=" col s12">
                         <div class="collection">
                             <div ng-repeat="follower in following"> <a href="" ng-click="openUser(follower)" class="collection-item">{{follower.name}}</a></div>
                         </div>
@@ -147,14 +155,18 @@
                 </div>
             </div>
         </div>
+        
+        
     </div>
+    
+    
     <div id="modal" class="modal modal-fixed-footer white">
         <div class="row">
             <div class="modal-content">
                 <div class="col s6 black">
                     <img class="responsive-img" ng-src="{{modalbook.image}}">
                 </div>
-                <div class="col s6 grey lighten-4">
+                <div class="col s6 grey darken-4">
                     <h4>{{modalbook.bookname}} By {{modalbook.author}}</h4>
                     <h5>{{modalbook.genre}}</h5>
                     <div class="divider"></div>
@@ -163,6 +175,7 @@
 
             </div>
         </div>
+        
         <div class="modal-footer white">
             <div ng-show="modalfeatured">
                 <a ng-click="removeFeaturedBooks(modalbook)" class="modal-action modal-close waves-effect waves-green btn-flat teal accent-4 s2 white-text">Remove from featured books</a>
@@ -171,8 +184,11 @@
                 <a ng-click="borrow(modalbook)" id="borrowBtn" class="modal-action modal-close waves-effect waves-green btn-flat teal accent-4 s2 white-text">Borrow</a>
             </div>
         </div>
+        
+        <a ng-click="logout()" id="logoutBtn" class="btn waves-effect waves-teal grey darken-4">Logout</a></li>
     </div>
 </div>
+
 <script type="text/javascript">
     $(document).ready(function() {
         $('.materialboxed').materialbox();

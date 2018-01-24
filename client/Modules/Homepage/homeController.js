@@ -15,7 +15,6 @@ app.controller('homeController', function($scope, $location, newBooksService, bo
     $scope.openGenre = function(genrename) {
         $location.path("/genres/" + genrename);
     }
-
     $scope.openBook = function(book) {
         $location.path("/books/" + book.bookname);
     }
@@ -33,7 +32,16 @@ app.controller('homeController', function($scope, $location, newBooksService, bo
             newBooksService.get()
                 .then(function(responses) {
                     $scope.view = "books";
-                    $scope.books = responses;
+                    var rows = [];
+                    for(var x = 0;x< responses.length;){
+                      var books = [];
+                      books.push(responses[x]);
+                      books.push(responses[x+1]);
+                      x = x+2;
+                      rows.push(books);
+                    }
+                    console.log(rows);
+                    $scope.books = rows;
                     $scope.page = true;
                     $scope.loading = false;
                     $(document).ready(function() {
