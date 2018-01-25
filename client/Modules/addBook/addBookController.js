@@ -1,6 +1,6 @@
 var app = angular.module("quickbooks");
 app.controller('addBookController', function($scope, userService, addBookService) {
-    var data = {}; //what does this do?
+    var data = []; //what does this do?
     var isNew = false;
     angular.element(document).ready(function() {
         $('select').material_select();

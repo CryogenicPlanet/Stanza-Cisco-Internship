@@ -17,6 +17,8 @@ app.controller('showBookController', function($scope, $location, $routeParams, a
             $scope.genrename = bookdetails[0].genrename;
             $scope.year = bookdetails[0].year;
             $scope.owners = bookdetails[0].owners;
+            $scope.image - bookdetails[0].owners[0].image;
+            console.log(bookdetails[0].owners[0].image);
             // $scope.authorbooks = authorbooks;
         }).finally(function() {
             $scope.bookloading = false;

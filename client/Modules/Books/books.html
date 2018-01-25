@@ -21,31 +21,31 @@
 </div>
 <div class="section grey darken-4" ng-show="bookpage">
     <div class="row">
-        <div class="s10 offset-s2">
-            <div class="card-panel white col s10 offset-s1 z-depth-0">
+        <div class="s10">
+            <div class="card-panel blue-grey darken-4 teal-text text-accent-4 col s8 offset-s1 z-depth-0">
                 <div class="row valign-wrapper">
                     <div class="col s3">
-                        <img src="Images/books.jpeg" alt="" class="responsive-img">
+                        <img src="{{image}}" alt="" class="responsive-img">
                         <!-- notice the "circle" class -->
                     </div>
                     <div class="col s4">
                         <div class="row">
-                            <span class="black-text col s8 offset-s2">
+                            <span class="white-text col s8 offset-s2">
                             <h4>{{bookname}}</h4></span>
                         </div>
                     </div>
                     <div class = "col s5">
                         <div class = "row">
                             <div class = "row"></div>
-                            <span class="black-text col s8 offset-s2">
+                            <span class="white-text col s8">
                             <h6>Written By: <a href = "" ng-click = "openAuthor(authorname)">{{authorname}}</a></h6></span>
                         </div>
                         <div class = "row">
-                            <span class="black-text col s8 offset-s2">
+                            <span class="white-text col s8">
                             <h6>Genre: <a href = "" ng-click = "openGenre(genrename)">{{genrename}}</a></h6></span>
                         </div>
                         <div class = "row">
-                            <span class="black-text col s8 offset-s2">
+                            <span class="white-text col s8">
                             <h6>Published In: {{year}}</h6></span>
                         </div>
                     </div>
@@ -55,11 +55,11 @@
     </div>
     <div class="row">
         <div class="col s6 offset-s1" id="all">
-            <div class="card-panel grey darken-2 z-depth-0">
+            <div class="card-panel grey darken-4 z-depth-0">
                 <h5><div class="white-text">Owners:</div></h5>
                 <ul class="collection">
                     <div ng-repeat="owner in owners">
-                        <li class="collection-item avatar">
+                        <li class="collection-item blue-grey darken-4 teal-text text-accent-4 avatar">
                             <span class="title"><a href = "" class = "modal-trigger" ng-click = "userpage">{{owner.username}}</a></span>
                             <p>Description: {{owner.description}}</p>
                             <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>

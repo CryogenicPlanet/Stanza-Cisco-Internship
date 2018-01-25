@@ -24,6 +24,11 @@
 </div>
 
 <div class="section grey darken-4" ng-show="page">
+    <style type="text/css">
+        a {
+            color: white;
+        }
+    </style>
     <div ng-switch on="view">
         <div ng-switch-when="books">
             <div class="container">
@@ -32,25 +37,25 @@
                         <div ng-repeat="book in row">
                             <div ng-if="book.uuid != null">
                                 <div class="col s4 offset">
-                                    <div class="card large">
+                                    <div class="card large blue-grey darken-4">
                                         <div class="card-image waves-effect waves-block waves-light">
                                             <img class="activator responsive-img" ng-src="{{book.image}}">
                                         </div>
                                         <div class="card-content">
                                             <span class="card-title activator grey-text text-darken-4"><a href = "" ng-click = "openBook(book)">{{book.bookname}}</a><i class="material-icons right">more_vert</i></span>
-                                            <p>Author: <a href="" ng-click="openAuthor(book.author)">{{book.author}}</a>, {{book.year}}</p>
-                                            <p>Genre: <a href="" ng-click="openGenre(book.genre)">{{book.genre}}</a></p>
-                                            <p>Owned By: <a href="" ng-click="openUser(book)">{{book.username}}</a></p>
+                                            <p class="teal-text text-accent-4">Author: <a href="" ng-click="openAuthor(book.author)">{{book.author}}</a>, {{book.year}}</p>
+                                            <p class="teal-text text-accent-4">Genre: <a href="" ng-click="openGenre(book.genre)">{{book.genre}}</a></p>
+                                            <p class="teal-text text-accent-4">Owned By: <a href="" ng-click="openUser(book)">{{book.username}}</a></p>
                                             <p>
                                                 <!--   <input id="lenderId" type="hidden" ng-model="llenderId" value="{{book.uuid}}"> 
                                 <input id="bookId" type="hidden" ng-model="lbookId" value="{{book.ubid}}"> -->
 
-                                                <a ng-click="borrow(book)" id="borrowBtn" class="waves-effect waves-teal btn teal accent-4">Borrow this Book</a>
+                                                <a ng-click="borrow(book)" id="borrowBtn" class="waves-effect waves-teal btn teal">Borrow this Book</a>
 
                                             </p>
                                         </div>
-                                        <div class="card-reveal">
-                                            <span class="card-title grey-text text-darken-4"><h5>{{book.bookname}}</h5> <i class="material-icons right">close</i></span>
+                                        <div class="card-reveal grey darken-2 white-text">
+                                            <span class="card-title whitee-text"><h5>{{book.bookname}}</h5> <i class="material-icons right">close</i></span>
                                             <div>
                                                 <h6>Published year: {{book.year}}</h6>
                                             </div>
@@ -64,7 +69,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col s1 offset-s1"></div>
+                                <div class="col s1"></div>
                             </div>
                         </div>
                         <!--
@@ -107,7 +112,7 @@
     </div>
 </div>
 <div class="fixed-action-btn left-align" style="left: 23px; right: auto;">
-    <a ng-click="addBook()" class="modal-trigger waves-effect waves-light btn btn-large hoverable tooltipped btn-floating teal darken-3" data-tooltip="Add your books">
+    <a ng-click="addBook()" class="modal-trigger waves-effect waves-light btn btn-large hoverable tooltipped btn-floating teal darken-3" data-position="right" data-tooltip="Add your books">
         <i class = "material-icons">add</i>
      </a>
 </div>

@@ -53,6 +53,7 @@ app.controller('baseController', function($scope, $location, newBooksService, bo
     $scope.side_borrow_selected;
     $scope.side_lent_selected;
     $scope.token = userService.getToken();
+    $scope.navready = false;
     // console.log($scope.token);
     $scope.$on('$routeChangeStart', function($event, next, current) {
         // ... you could trigger something here ...
@@ -75,6 +76,7 @@ app.controller('baseController', function($scope, $location, newBooksService, bo
                 onClose: function(el) { /* Do Stuff */ }, // A function to be called when sideNav is closed
             });
         });
+        $scope.navready = true;
     }
     $scope.myFunct = function(keyEvent) {
         if (keyEvent.which === 13) {
@@ -108,7 +110,7 @@ app.controller('baseController', function($scope, $location, newBooksService, bo
                     $scope.expelreplyid(request.URID);
                 }
                 if (requests.length == 0) {
-                    //Materialize.toast('<p class="flow-text green-text">You have no book <br> requests!!</p>', 2000);
+                       //Materialize.toast('<p class="flow-text green-text">You have no book <br> requests!!</p>', 2000);
                 }
             })
             .catch(function(err) {
@@ -156,6 +158,7 @@ app.controller('baseController', function($scope, $location, newBooksService, bo
         borrowedBooksService.getBorrowedBooks()
             .then(function(borrowedbooks) {
                 $scope.borrowedbooks = borrowedbooks;
+                console.log(borrowedbooks);
                 for (let borrowedbook of borrowedbooks) {
                     $scope.expelreturnid(borrowedbook.UBOID);
                 }

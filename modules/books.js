@@ -121,10 +121,11 @@ exports.getBookDetails = async function(req, res, con) {
         this.owners = owners;
     }
 
-    function newOwner(uuid, username, description) {
+    function newOwner(uuid, username, description,image) {
         this.uuid = uuid;
         this.username = username;
         this.description = description;
+        this.image = image;
     }
     var bookname = req.body.name;
     let [details] = await con.query(`SELECT * FROM Books WHERE Name="${req.body.name}"`);
@@ -141,7 +142,7 @@ exports.getBookDetails = async function(req, res, con) {
     for (let owner of bookowners) {
         let [username] = await con.query(`SELECT Name FROM Users WHERE UUID="${owner.User}"`);
         username = username.Name;
-        ownersarray.push(new newOwner(owner.User, username, owner.Description));
+        ownersarray.push(new newOwner(owner.User, username, owner.Description,owner.Image));
     }
 
     bookdetails.push(new newDetails(ubid, bookname, authorname, genrename, year, ownersarray));
