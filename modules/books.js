@@ -1,6 +1,8 @@
 const jwt = require('jsonwebtoken'); // Json Web Token Library; Used for authentication
 const fs = require('fs');
 var exports = module.exports = {};
+var sanitizer = require('sanitizer');
+
 
 exports.addBook = async function(req, res, con, secret) {
     var token = req.body.token || req.query.token || req.headers['x-access-token'];
@@ -17,13 +19,14 @@ exports.addBook = async function(req, res, con, secret) {
     var book = {};
     console.log(req.body);
     if (req.body.image) {
-        book.image = req.body.image;
+        
+        book.image = sanitizer.escape(req.body.image);
     }
     else {
-        book.image = "/Images/books.jpeg";
+        book.image = "https://raw.githubusercontent.com/CryogenicPlanet/Cisco-internship/master/Images/books.jpeg";
     }
     if (req.body.ubid) { // If Book Already Exists and User Chooses This
-        addUserbook(con, uuid, req.body.ubid, req.body.description, book.image);
+        addUserbook(con, uuid, req.body.ubid, sanitizer.escape(req.body.description), sanitizer.escape(book.image));
         var message = {
             message: "Sucessfully Added"
         };
@@ -39,7 +42,7 @@ exports.addBook = async function(req, res, con, secret) {
             book.author = author.Name;
         }
         else {
-            book.author = req.body.author;
+            book.author = sanitizer.escape(req.body.author);
             let addAuthor = await con.query(`INSERT INTO Authors (Name) VALUES ("${book.author}")`);
             let [author] = await con.query(`SELECT UAID FROM Authors WHERE Name="${book.author}"`);
             book.uaid = author.UAID;
@@ -50,15 +53,15 @@ exports.addBook = async function(req, res, con, secret) {
             book.genre = genre.Name
         }
         else {
-            book.genre = req.body.genre;
+            book.genre = sanitizer.escape(req.body.genre);
             let addGenres = await con.query(`INSERT INTO Genres (Name) VALUES ("${book.genre}")`);
             let [genre] = await con.query(`SELECT UGID FROM Genres WHERE Name="${book.genre}"`);
             book.ugid = genre.UGID;
         }
         // By This Point Books Author and Genre are Confirmed
-        book.name = req.body.name;
-        book.year = req.body.year;
-        book.description = req.body.description;
+        book.name = sanitizer.escape(req.body.name);
+        book.year = sanitizer.escape(req.body.year);
+        book.description = sanitizer.escape(req.body.description);
         if (addNewBookDb(con, book.name, book.uaid, book.ugid, book.year)) {
             let [addedbook] = await con.query(`SELECT UBID FROM Books WHERE Name="${book.name}"`);
             book.ubid = addedbook.UBID;
@@ -105,6 +108,7 @@ var addNewBookFile = async function(ubid, name, author, genre, year) {
     }
 
 }
+
 exports.getBookDetails = async function(req, res, con) {
     var bookdetails = []
 
@@ -117,14 +121,14 @@ exports.getBookDetails = async function(req, res, con) {
         this.owners = owners;
     }
 
-    function newOwner(uuid, username, description) {
+    function newOwner(uuid, username, description,image) {
         this.uuid = uuid;
         this.username = username;
         this.description = description;
+        this.image = image;
     }
     var bookname = req.body.name;
-    let details = await con.query(`SELECT * FROM Books WHERE Name="${req.body.name}"`);
-    details = details[0];
+    let [details] = await con.query(`SELECT * FROM Books WHERE Name="${req.body.name}"`);
     let ubid = details.UBID;
     let year = details.Year;
     let [authorname] = await con.query(`SELECT Name FROM Authors WHERE UAID="${details.Author}"`);
@@ -138,7 +142,7 @@ exports.getBookDetails = async function(req, res, con) {
     for (let owner of bookowners) {
         let [username] = await con.query(`SELECT Name FROM Users WHERE UUID="${owner.User}"`);
         username = username.Name;
-        ownersarray.push(new newOwner(owner.User, username, owner.Description));
+        ownersarray.push(new newOwner(owner.User, username, owner.Description,owner.Image));
     }
 
     bookdetails.push(new newDetails(ubid, bookname, authorname, genrename, year, ownersarray));
@@ -190,15 +194,11 @@ exports.getGenre = async function(req, res, con) {
     }
     console.log("Uaid : " + req.query.genre);
 
-    let genres = await con.query(`SELECT * FROM Genres WHERE Name="${req.query.genre}"`)
-    var genreID = genres[0].UGID;
-    console.log(genreID);
+    let [genres] = await con.query(`SELECT * FROM Genres WHERE Name="${req.query.genre}"`)
+    var genreID = genres.UGID;
     var getBooks = await con.query(`SELECT * FROM Books WHERE Genre=${genreID}`);
-    for (let i = 0; i < getBooks.length; i++) {
-        var book = getBooks[i];
-        var authorname = await con.query(`SELECT Name FROM Authors WHERE UAID=${book.Author}`);
-        authorname = authorname[0].Name;
-        console.log(authorname);
+    for (let book of getBooks) {
+        var [authorname] = await con.query(`SELECT Name FROM Authors WHERE UAID=${book.Author}`);
         books.push(new NewBook(book.UBID, book.Name, authorname, book.Genre, book.Year));
     }
     res.status(200).json({

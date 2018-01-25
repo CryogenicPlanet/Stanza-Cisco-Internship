@@ -1,9 +1,38 @@
 var app = angular.module("quickbooks");
-app.controller('userController', function($scope, $location, $routeParams, userService, featuredBooksService, profileService) {
+app.controller('userController', function($scope, $location, $routeParams, userService, featuredBooksService, profileService, followService) {
     $scope.userPage = false;
     $scope.userloading = true;
     var userID = -1;
-
+    $scope.followed;
+    $scope.follow = function() {
+        let user = $routeParams.userId;
+        if ($scope.followed == false) {
+            followService.follow(user)
+                .then(function(data) {
+                    $scope.followed = true;
+                });
+            profileService.getDetails(user, userService.getToken())
+                .then(function(details) {
+                    $scope.name = details.response.name;
+                    $scope.books = details.response.books;
+                    $scope.following = details.response.following;
+                    $scope.followers = details.response.followers;
+                });
+        }
+        else {
+            followService.unfollow(user)
+                .then(function(data) {
+                    $scope.followed = false;
+                });
+            profileService.getDetails(user, userService.getToken())
+                .then(function(details) {
+                    $scope.name = details.response.name;
+                    $scope.books = details.response.books;
+                    $scope.following = details.response.following;
+                    $scope.followers = details.response.followers;
+                });
+        }
+    }
     $scope.getFeaturedBooks = function() {
         featuredBooksService.getBooks(userID) // NAME
             .then(function(featuredbooks) {
@@ -38,7 +67,6 @@ app.controller('userController', function($scope, $location, $routeParams, userS
 
             });
     }
-
     $scope.addFeaturedBooks = function(book) {
         var data = {
             featuredbook: book
@@ -85,10 +113,13 @@ app.controller('userController', function($scope, $location, $routeParams, userS
                     $scope.following = details.response.following;
                     $scope.followers = details.response.followers;
                 });
+            followService.followed(userID)
+                .then(function(response) {
+                    $scope.followed = response.status;
+                });
         }
         $scope.getFeaturedBooks();
     }
-
     if (!(userService.getBooks())) {
         userService.getDetails()
             .then(function(data) {

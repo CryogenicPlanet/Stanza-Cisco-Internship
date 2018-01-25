@@ -1,6 +1,6 @@
 //Environment Variables
 var port = process.env.PORT; // Port of server
-
+var dbPassword = process.env.Db;
 //Libraries
 var getenv = require('getenv'); // Library for Enviroment Variables, Used for Db Conn
 var mysql = require('promise-mysql'); // Mysql Library, With Node Promises
@@ -16,6 +16,7 @@ var books = require("./modules/books.js");
 var requests = require("./modules/requests.js");
 var returns = require("./modules/returns.js");
 var statusofbooks = require("./modules/statusofbooks.js");
+var follow = require("./modules/follow.js");
 //Server Don't worry about this
 var express = require('express'); // Framework for Node
 var app = express(); // Establishing Express App
@@ -26,14 +27,16 @@ app.set('jwtTokenSecret', 'D2A8EC7BF22AECBEB745FDAAA892CDCD8A678D4E94C6452D58AD9
 var server = app.listen(port); // Set Port
 
 
+
 //DataBase connection using promises
 var con = null; 
 mysql.createConnection({
     host: getenv('IP'),
     user: getenv('C9_USER'),
-    password: "",
+    password: "Cisco",
     database: "c9"
 }).then(function(connection) { con = connection });
+
 app.use("/", express.static("./client/")); // HERE
 /*app.get('/js/main.js',function(req, res) {
    res.sendfile("./client/js/main.js") 
@@ -112,11 +115,23 @@ app.post('/removeFeaturedBooks', function(req, res) {
 app.post('/getBookDetails', function(req, res) {
    books.getBookDetails(req, res, con);
 });
+app.post('/follow',function(req, res) {
+    follow.follow(req,res,con,app.get('jwtTokenSecret'));
+});
+app.post('/unfollow',function(req, res) {
+    follow.unfollow(req,res,con,app.get('jwtTokenSecret'));
+});
+app.post('/followed',function(req, res) {
+   follow.followed(req,res,con,app.get('jwtTokenSecret')); 
+});
 
 // Handling Requests of type GET, used to get Data from the server or databae
 app.get("/getSalt",function(req, res) {
    user.getSalt(req,res,con); 
 });
+app.get("/searchUser",function(req, res) {
+    search.getUser(req,res,con);
+})
 app.get('/verify', function(req, res) { // Request to verify email after signup, This request is from the browser after email link is clicked
     user.verify(req, res, con,app.get('jwtTokenSecret')); // Calling function .verify() of Object User passing the input, output and database connection
 });

@@ -19,21 +19,21 @@
         <img id="book" src="Images/loading/book.png" />
     </div>
 </div>
-<div class="section grey lighten-2">
+<div class="section grey darken-4">
     <div class="container" ng-show="authorpage">
         <div class="row">
-            <div class="col s12">
-                <div class="card white">
-                    <div class="card-title white flow-text center-align">Author : {{authorName}}</div>
-                    <div class="card-content white grey-text text-darken-4">
+            <div class="col s10">
+                <div class="card grey darken-4 z-depth-0">
+                    <div class="row"></div>
+                    <div class="card-title flow-text center-align"><div class="grey-text text-lighten-4">Author : {{authorName}}</div></div>
+                    <div class="card-content grey darken-4 grey-text text-darken-4">
                         <ul class="collection">
                             <div ng-repeat="authorbook in authorbooks">
-                                <li class="collection-item avatar">
+                                <li class="collection-item blue-grey darken-4 teal-text text-accent-4 avatar">
                                     <img src="Images/books.jpeg" alt="" class="circle">
                                     <span class="title"><a>{{authorbook.bookname}}</a></span>
-                                    <p>Published on : {{authorbook.year}}</p>
+                                    <p>Published On : {{authorbook.year}}</p>
                                     <p>Genre : <a href = "" ng-click = "openGenre(authorbook.genre.Name)">{{authorbook.genre.Name}}</a></p>
-                                    <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
                                 </li>
                             </div>
                         </ul>

@@ -19,21 +19,21 @@
         <img id="book" src="Images/loading/book.png" />
     </div>
 </div>
-<div class="section grey lighten-2">
+<div class="section grey darken-4">
     <div class="container" ng-show="genrepage">
         <div class="row">
-            <div class="col s12">
-                <div class="card white">
-                    <div class="card-title white flow-text center-align">Genre : {{genreName}}</div>
-                    <div class="card-content white grey-text text-darken-4">
+            <div class="col s10">
+                <div class="card grey darken-4 z-depth-0">
+                    <div class="row"></div>
+                    <div class="card-title flow-text center-align"><div class="grey-text text-lighten-4">Genre : {{genreName}}</div></div>
+                    <div class="card-content grey darken-4 grey-text text-darken-4">
                         <ul class="collection">
                             <div ng-repeat="genrebook in genrebooks">
-                                <li class="collection-item avatar">
+                                <li class="collection-item blue-grey darken-4 teal-text text-accent-4 avatar">
                                     <img src = "Images/books.jpeg" alt="Images/books.jpeg" class="circle">
                                     <span class="title"><a>{{genrebook.bookname}}</a></span>
-                                    <p>Written by : <a href="" ng-click = "openAuthor(genrebook.author)">{{genrebook.author}}</a></p>
-                                    <p>Published on : {{genrebook.year}}</p>
-                                    <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+                                    <p>Written By : <a href="" ng-click = "openAuthor(genrebook.author.Name)">{{genrebook.author.Name}}</a></p>
+                                    <p>Published On : {{genrebook.year}}</p>
                                 </li>
                             </div>
                         </ul>

@@ -3,7 +3,7 @@
 </script>
 <div class="spinner" ng-show="loading">
     <link rel="stylesheet" type="text/css" href="css/loading.css" />
-    <div id="loader" bgcolor="#212121">
+    <div id="loader" bgcolor="#ffffff">
         <img id="dot" class="dots_r" src="Images/loading/dot.svg" />
         <img id="dot1" class="dots_r" src="Images/loading/dot1.svg" />
         <img id="dot2" class="dots_r" src="Images/loading/dot2.svg" />
@@ -23,16 +23,60 @@
     </div>
 </div>
 
-<div class="section grey lighten-2" ng-show="page">
+<div class="section grey darken-4" ng-show="page">
+    <style type="text/css">
+        a {
+            color: white;
+        }
+    </style>
     <div ng-switch on="view">
         <div ng-switch-when="books">
             <div class="container">
-                <div ng-repeat="book in books">
+                <div ng-repeat="row in books">
                     <div class="row">
-                        <div class="col s6 offset-s3">
-                            <div class="card">
+                        <div ng-repeat="book in row">
+                            <div ng-if="book.uuid != null">
+                                <div class="col s4 offset">
+                                    <div class="card large blue-grey darken-4">
+                                        <div class="card-image waves-effect waves-block waves-light">
+                                            <img class="activator responsive-img" ng-src="{{book.image}}">
+                                        </div>
+                                        <div class="card-content">
+                                            <span class="card-title activator grey-text text-darken-4"><a href = "" ng-click = "openBook(book)">{{book.bookname}}</a><i class="material-icons right">more_vert</i></span>
+                                            <p class="teal-text text-accent-4">Author: <a href="" ng-click="openAuthor(book.author)">{{book.author}}</a>, {{book.year}}</p>
+                                            <p class="teal-text text-accent-4">Genre: <a href="" ng-click="openGenre(book.genre)">{{book.genre}}</a></p>
+                                            <p class="teal-text text-accent-4">Owned By: <a href="" ng-click="openUser(book)">{{book.username}}</a></p>
+                                            <p>
+                                                <!--   <input id="lenderId" type="hidden" ng-model="llenderId" value="{{book.uuid}}"> 
+                                <input id="bookId" type="hidden" ng-model="lbookId" value="{{book.ubid}}"> -->
+
+                                                <a ng-click="borrow(book)" id="borrowBtn" class="waves-effect waves-teal btn teal">Borrow this Book</a>
+
+                                            </p>
+                                        </div>
+                                        <div class="card-reveal grey darken-2 white-text">
+                                            <span class="card-title whitee-text"><h5>{{book.bookname}}</h5> <i class="material-icons right">close</i></span>
+                                            <div>
+                                                <h6>Published year: {{book.year}}</h6>
+                                            </div>
+                                            <div>
+                                                <h6> By: {{book.author}} </h6>
+                                            </div>
+                                            <div>
+                                                <h6>Genre: {{book.genre}} </h6>
+                                            </div>
+                                            <p>Description: {{book.description}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col s1"></div>
+                            </div>
+                        </div>
+                        <!--
+                        <div class="col s4 offset-s2">
+                            <div class="card large">
                                 <div class="card-image waves-effect waves-block waves-light">
-                                    <img class="activator" ng-src="{{book.image}}">
+                                    <img class="activator responsive-img" ng-src="{{book.image}}">
                                 </div>
                                 <div class="card-content">
                                     <span class="card-title activator grey-text text-darken-4"><a href = "" ng-click = "openBook(book)">{{book.bookname}}</a><i class="material-icons right">more_vert</i></span>
@@ -41,25 +85,34 @@
                                     <p>Owned By: <a href="" ng-click="openUser(book)">{{book.username}}</a></p>
                                     <p>
                                         <!--   <input id="lenderId" type="hidden" ng-model="llenderId" value="{{book.uuid}}"> 
-                                <input id="bookId" type="hidden" ng-model="lbookId" value="{{book.ubid}}"> -->
-                                        <a ng-click="borrow(book)" id="borrowBtn" class="waves-effect waves-teal btn orange accent-4">Borrow this Book</a>
+                                <input id="bookId" type="hidden" ng-model="lbookId" value="{{book.ubid}}">
+
+                                        <a ng-click="borrow(book)" id="borrowBtn" class="waves-effect waves-teal btn teal accent-4">Borrow this Book</a>
 
                                     </p>
                                 </div>
                                 <div class="card-reveal">
-                                    <span class="card-title grey-text text-darken-4">{{book.bookname}},{{book.year}}, By {{book.author}}.Genre: {{book.genre}}<i class="material-icons right">close</i></span>
-                                    <p>{{book.description}}</p>
+                                    <span class="card-title grey-text text-darken-4"><h5>{{book.bookname}}</h5> <i class="material-icons right">close</i></span>
+                                    <div>
+                                        <h6>Published year: {{book.year}}</h6>
+                                    </div>
+                                    <div>
+                                        <h6> By: {{book.author}} </h6>
+                                    </div>
+                                    <div>
+                                        <h6>Genre: {{book.genre}} </h6>
+                                    </div>
+                                    <p>Description: {{book.description}}</p>
                                 </div>
-                            </div>
-                        </div>
+                            </div> -->
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="fixed-action-btn left-align" style="left: 23px; right: auto;">
-        <a ng-click="addBook()" class="waves-effect waves-light btn btn-large hoverable btn-floating">
-        <i class = "material-icons">library_add</i>
+</div>
+<div class="fixed-action-btn left-align" style="left: 23px; right: auto;">
+    <a ng-click="addBook()" class="modal-trigger waves-effect waves-light btn btn-large hoverable tooltipped btn-floating teal darken-3" data-position="right" data-tooltip="Add your books">
+        <i class = "material-icons">add</i>
      </a>
-    </div>
-    
+</div>
