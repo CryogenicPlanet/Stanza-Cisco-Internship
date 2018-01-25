@@ -1,31 +1,17 @@
 <?php
-if(isset($_REQUEST['submit']))
-{
-  $filename=  $_FILES["imgfile"]["name"];
-  if ((($_FILES["imgfile"]["type"] == "image/gif")|| ($_FILES["imgfile"]["type"] == "image/jpeg") || ($_FILES["imgfile"]["type"] == "image/png")  || ($_FILES["imgfile"]["type"] == "image/pjpeg")) && ($_FILES["imgfile"]["size"] < 200000))
-  {
-    if(file_exists($_FILES["imgfile"]["name"]))
-    {
-      echo "File name exists.";
+$target_dir = "uploads/";
+$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+$uploadOk = 1;
+$imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+// Check if image file is a actual image or fake image
+if(isset($_POST["submit"])) {
+    $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+    if($check !== false) {
+        echo "File is an image - " . $check["mime"] . ".";
+        $uploadOk = 1;
+    } else {
+        echo "File is not an image.";
+        $uploadOk = 0;
     }
-    else
-    {
-      move_uploaded_file($_FILES["imgfile"]["tmp_name"],"uploads/$filename");
-      echo "Upload Successful . <a href='uploads/$filename'>Click here</a> to view the uploaded image";
-    }
-  }
-  else
-  {
-    echo "invalid file.";
-  }
 }
-else
-{
 ?>
-<form method="post" enctype="multipart/form-data">
-File name:<input type="file" name="imgfile"><br>
-<input type="submit" name="submit" value="upload">
-</form>
-<?php
-}
-?> 
