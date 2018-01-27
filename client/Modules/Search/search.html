@@ -37,17 +37,17 @@
                     </div>
                 </div>
                 <div id="showUsers" class="col s12">
-                    <div class="col s10">
+                    <div class="col s10 grey darken-4">
                         <ul class="collection">
                             <div ng-repeat="user in users">
-                                <li class="collection-item avatar">
+                                <li class="collection-item avatar blue-grey darken-4">
                                     <img src="https://thebenclark.files.wordpress.com/2014/03/facebook-default-no-profile-pic.jpg" alt="" class="circle responsive-img">
-                                    <span class="title"><a ng-click="openUser(user)">{{user.Name}}</a></span>
+                                    <span class="title teal-text text-accent-4"><a ng-click="openUser(user)">{{user.Name}}</a></span>
                                 </li>
                             </div>
                             <div ng-show="noUsers">
-                                <li class="collection-item avatar">
-                                    <span class="title">No Users Found.</span>
+                                <li class="collection-item avatar blue-grey darken-4">
+                                    <span class="title teal-text text-accent-4">No Users Found.</span>
                                 </li>
                             </div>
                     </div>

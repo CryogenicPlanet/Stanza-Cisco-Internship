@@ -63,9 +63,14 @@
     html {
       font-family: GillSans, Calibri, Trebuchet, sans-serif;
     }
-    a[class*="notify"]
-    {
-        text-transform:initial;
+
+    a[class*="notify"] {
+      text-transform: initial;
+    }
+
+    div[ng-show*="side"] {
+      margin-left: 10px;
+      margin-right: 10px;
     }
   </style>
 
@@ -101,7 +106,7 @@
             <div class="col s1">
               <div class="row">
                 <div class="col s6">
-                  <a ng-click="openUser();" class=" waves-effect waves-light tooltipped" data-position="down" data-delay="50" data-tooltip="Your profile"><i class ="material-icons">person</i></a>
+                  <a  class=" waves-effect waves-light tooltipped" ><i class ="material-icons">person</i></a>
                 </div>
                 <div class="col s6"></div>
               </div>
@@ -118,21 +123,20 @@
             <div class="user-view">
               <div class="row valign-wrapper">
                 <div class="col s6">
-                  <a><img class="circle responsive-img" src="https://thebenclark.files.wordpress.com/2014/03/facebook-default-no-profile-pic.jpg"></a>
+                  <a ng-click="openUser();" href="" class="tooltipped" data-position="down" data-delay="50" data-tooltip="Your profile"><img class="circle responsive-img" src="https://thebenclark.files.wordpress.com/2014/03/facebook-default-no-profile-pic.jpg"></a>
                 </div>
                 <div class="col s6">
-                  <div class = "row">
-                    <a><span class="gray-text email">Rahul Tarak</span></a>
+                  <div class="row">
+                    <a><span class="white-text email">Rahul Tarak</span></a>
                   </div>
-                  <div class = "row">
-                     <a><span class="gray-text email"> rahultarak12345@gmail.com</span></a>
+                  <div class="row">
+                    <a><span class="white-text email"> rahultarak12345@gmail.com</span></a>
                   </div>
                 </div>
               </div>
             </div>
           </li>
           <li>
-
             <div class="row">
               <div class="col s6">
                 <div class="row center-align">
@@ -154,119 +158,131 @@
                 </div>
               </div>
             </div>
-            <div ng-show="side_mine_selected" style="margin-left : 10px; margin-right : 10px">
-              <section class="teal darken-2">
-                <div ng-show="sentrequests.length == 0">
-                  <div class="center-align gray-text name">You have not sent any requests</div>
-                </div>
-                <div ng-show="sentrequests.length > 0">
+            <div ng-show="side_mine_selected">
+              <div ng-show="sentrequests.length == 0">
+                <div class="center-align blue-grey darken-4 teal-text text-accent-4 name">You have not sent any requests</div>
+              </div>
+              <div ng-show="sentrequests.length > 0">
+                <section class="teal darken-2">
                   <div ng-repeat="request in sentrequests">
-                    <div class="center-align gray-text name">You have sent a request for {{request.Book}} to {{request.Lender}}</div>
+                    <div class="center-align white-text name">You have sent a request for {{request.Book}} to {{request.Lender}}</div>
                     <div class="center-align" ng-show="request.Status == 0">
-                      <a class="notify btn disabled grey gray-text name">{{request.Lender}} has not yet responded</a>
+                      <a class="notify btn disabled black-text name">{{request.Lender}} has not yet responded</a>
                     </div>
                     <div class="center-align" ng-show="request.Status == 1">
-                      <a class="notify btn teal gray-text name">{{request.Lender}} has accepted</a>
+                      <a class="notify btn blue-grey darken-4 teal-text text-accent-4 name">{{request.Lender}} has accepted</a>
                     </div>
                     <div class="card-content center-align" ng-show="request.Status == 2">
-                      <a class="notify btn waves-effect disabled hoverable red gray-text name">{{request.Lender}} has declined your request</a>
+                      <a class="notify btn waves-effect disabled hoverable red teal-text text-accent-4 name">{{request.Lender}} has declined your request</a>
                     </div>
+                    <div class = "divider"></div>
                   </div>
-                </div>
-              </section>
+                </section>
+              </div>
             </div>
             <div ng-show="side_user_selected">
               <div ng-show="requests.length == 0">
-                <div class="card-title center-align" "gray-text name">>You have not received any requests</div>
+                <div class="center-align blue-grey darken-4 teal-text text-accent-4 name">
+                  You have not received any requests
+                </div>
               </div>
               <div ng-show="requests.length > 0">
-                <div ng-repeat="request in requests">
-                  <div class="card-title center-align" "gray-text name">You have a new request for your book {{request.Book}} by {{request.Borrower}}</div>
-                  <div ng-show="replysuccess(request.URID)">
-                    <div class="card-content center-align">
-                      <div class="row">
-                        <div class="col s8 offset-s2">
-                          <a class="notify waves-effect waves-light btn grey">You have responded to this request</a>
+                <section class="teal darken-2">
+                  <div ng-repeat="request in requests">
+                    <div class="card-title center-align white-text name">You have a new request for your book {{request.Book}} by {{request.Borrower}}</div>
+                    <div ng-show="replysuccess(request.URID)">
+                      <div class="card-content center-align">
+                        <div class="row">
+                          <div class="col s8 offset-s2">
+                            <a class="notify waves-effect waves-light blue-grey darken-4 teal-text text-accent-4 btn">You have responded to this request</a>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                  <div ng-show="!replysuccess(request.URID)">
-                    <div class="card-content">
-                      <div class="row">
-                        <div class="col s3 offset-s1">
-                          <a ng-click="ReplyUserRequests(1, request)" class="notify waves-effect waves-darken btn green">Accept</a>
-                        </div>
-                        <div class="col s3 offset-s3">
-                          <a ng-click="ReplyUserRequests(2, request)" class="notify waves-effect waves-light btn red">Decline</a>
+                    <div ng-show="!replysuccess(request.URID)">
+                      <div class="card-content">
+                        <div class="row">
+                          <div class="col s3 offset-s1">
+                            <a ng-click="ReplyUserRequests(1, request)" class="notify waves-effect waves-darken btn teal">Accept</a>
+                          </div>
+                          <div class="col s3 offset-s3">
+                            <a ng-click="ReplyUserRequests(2, request)" class="notify waves-effect waves-light btn blue-grey darken-4">Decline</a>
+                          </div>
                         </div>
                       </div>
                     </div>
+                    <div class = "divider"></div>
                   </div>
-                </div>
+                </section>
               </div>
             </div>
           </li>
           <li>
             <div ng-show="side_borrow_selected">
               <div ng-show="borrowedbooks.length == 0">
-                <div class="card-title center-align">You have not borrowed any books</div>
+                <div class="card-title blue-grey teal-text text-darken-4 center-align">You have not borrowed any books</div>
               </div>
               <div ng-show="borrowedbooks.length > 0">
-                <div ng-repeat="book in borrowedbooks">
-                  <div class="card-title center-align">You borrowed {{book.Bookname}} from <br> {{book.Lender}} on {{book.borrowDate}}</div>
-                  <div ng-show="returnreqsuccess(book.UBOID)">
-                    <div class="card-content center-align">
-                      <div class="row">
-                        <div class="col s9 offset-s1">
-                          <a class="notify waves-effect waves-light btn grey">You have requested to return this book</a>
+                <section class="teal darken-2">
+                  <div ng-repeat="book in borrowedbooks">
+                    <div class="card-title white-text center-align">You borrowed {{book.Bookname}} from {{book.Lender}} on {{book.borrowDate}}</div>
+                    <div ng-show="returnreqsuccess(book.UBOID)">
+                      <div class="card-content center-align">
+                        <div class="row">
+                          <div class="col s9 offset-s1">
+                            <a class="notify waves-effect waves-light btn grey">You have requested to return this book</a>
+                          </div>
                         </div>
                       </div>
                     </div>
+                    <div ng-show="!returnreqsuccess(book.UBOID)">
+                      <div class="card-content center-align" ng-show="book.Outstanding == 1 && book.ReturnRequest == 0">
+                        <a ng-click="returnBorrowedBook(book)" class="notify btn waves-effect hoverable">Return book</a>
+                      </div>
+                      <div class="card-content center-align" ng-show="book.Outstanding == 1 && book.ReturnRequest == 1">
+                        <a class="notify btn waves-effect hoverable">{{book.Lender}} has yet to reply to your request to return the book</a>
+                      </div>
+                      <div class="card-content center-align" ng-show="book.Outstanding == 0">
+                        <a class="notify btn blue-grey darken-4 teal-text text-accent-4">You have already returned this book</a>
+                      </div>
+                    </div>
+                    <div class = "divider"></div>
                   </div>
-                  <div ng-show="!returnreqsuccess(book.UBOID)">
-                    <div class="card-content center-align" ng-show="book.Outstanding == 1 && book.ReturnRequest == 0">
-                      <a ng-click="returnBorrowedBook(book)" class="notify btn waves-effect hoverable">Return book</a>
-                    </div>
-                    <div class="card-content center-align" ng-show="book.Outstanding == 1 && book.ReturnRequest == 1">
-                      <a class="notify btn waves-effect hoverable">{{book.Lender}} has yet to reply to your request to return the book</a>
-                    </div>
-                    <div class="card-content center-align" ng-show="book.Outstanding == 0">
-                      <a class="notify btn waves-effect hoverable grey">You have already returned this book</a>
-                    </div>
-                  </div>
-                </div>
+                </section>
               </div>
             </div>
             <div ng-show="side_lent_selected">
               <div ng-show="lentbooks.length == 0">
-                <div class="card-title center-align">You have not lent any books</div>
+                <div class="card-title center-align blue-grey darken-4 teal-text text-accent-4">You have not lent any books</div>
               </div>
               <div ng-show="lentbooks.length > 0">
-                <div ng-repeat="book in lentbooks">
-                  <div class="card-title center-align">You lent {{book.Bookname}} to <br> {{book.Borrower}} on {{book.borrowDate}}</div>
-                  <div ng-show="takebacksuccess(book.UBOID)">
-                    <div class="card-content center-align">
-                      <div class="row">
-                        <div class="col s9 offset-s1">
-                          <a class="notify waves-effect waves-light btn grey">You have accepted to take back the book</a>
+                <section class="teal darken-2">
+                  <div ng-repeat="book in lentbooks">
+                    <div class="card-title white-text center-align">You lent "{{book.Bookname}}" to {{book.Borrower}} on {{book.borrowDate}}</div>
+                    <div ng-show="takebacksuccess(book.UBOID)">
+                      <div class="card-content center-align">
+                        <div class="row">
+                          <div class="col s9 offset-s1">
+                            <a class="notify waves-effect waves-light btn grey">You have accepted to take back the book</a>
+                          </div>
                         </div>
                       </div>
                     </div>
+                    <div ng-show="!takebacksuccess(book.UBOID)">
+                      <div class="card-content center-align" ng-show="book.Outstanding == 1 && book.ReturnRequest == 0">
+                        <a class="notify btn blue-grey darken-4 teal-text text-accent-4">{{book.Borrower}} has yet to return this book</a>
+                      </div>
+                      <div class="card-content center-align" ng-show="book.Outstanding == 1 && book.ReturnRequest == 1">
+                        <a class="notify btn blue-grey darken-4 teal-text text-accent-4">{{book.Borrower}} has requested you to take back your book</a>
+                        <a ng-click="takeBackBook(book)" class="notify btn waves-effect hoverable blue">Take back book</a>
+                      </div>
+                      <div class="card-content center-align" ng-show="book.Outstanding == 0">
+                        <a class="notify btn blue-grey darken-4 teal-text text-accent-4">You have taken this book back</a>
+                      </div>
+                    </div>
+                    <div class = "divider"></div>
                   </div>
-                  <div ng-show="!takebacksuccess(book.UBOID)">
-                    <div class="card-content center-align" ng-show="book.Outstanding == 1 && book.ReturnRequest == 0">
-                      <a class="notify btn waves-effect hoverable" "gray-text name">{{book.Borrower}} has yet to return this book</a>
-                    </div>
-                    <div class="card-content center-align" ng-show="book.Outstanding == 1 && book.ReturnRequest == 1">
-                      <a class="notify btn waves-effect hoverable" "gray-text name">{{book.Borrower}} has requested you to take back your book</a>
-                      <a ng-click="takeBackBook(book)" class="notify btn waves-effect hoverable blue">Take back book</a>
-                    </div>
-                    <div class="card-content center-align" ng-show="book.Outstanding == 0">
-                      <a class="notify btn waves-effect hoverable grey">You have taken this book back</a>
-                    </div>
-                  </div>
-                </div>
+                </section>
               </div>
             </div>
           </li>

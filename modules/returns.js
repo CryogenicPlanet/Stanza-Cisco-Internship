@@ -36,8 +36,9 @@ exports.getBorrowedBooks = async function(req, res, con,secret) { // whatever bo
         lendername = lendername.Name;
         let [borrowername] = await con.query(`SELECT Name FROM Users WHERE UUID="${borrow.Borrower}"`);
         borrowername = borrowername.Name;
-        let bookname = await con.query(`SELECT Name FROM Books WHERE UBID="${borrow.Book}"`);
+        let [bookname] = await con.query(`SELECT Name FROM Books WHERE UBID="${borrow.Book}"`);
         bookname = bookname.Name;
+        console.log(bookname);
         var date = borrow["Date of Response"];
         date = date.toString();
         var datestring = date.substring(4, 15);
