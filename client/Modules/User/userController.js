@@ -1,5 +1,5 @@
 var app = angular.module("quickbooks");
-app.controller('userController', function($scope, $location, $routeParams, userService, featuredBooksService, profileService, followService) {
+app.controller('userController', function($scope, $location, $routeParams, userService, featuredBooksService, profileService, followService, borrowService) {
     $scope.userPage = false;
     $scope.userloading = true;
     var userID = -1;
@@ -13,7 +13,8 @@ app.controller('userController', function($scope, $location, $routeParams, userS
                 });
             profileService.getDetails(user, userService.getToken())
                 .then(function(details) {
-                    $scope.name = details.response.name;
+                    $scope.profilePicture = details.response.user.Picture;
+                    $scope.name = details.response.user.Name;
                     $scope.books = details.response.books;
                     $scope.following = details.response.following;
                     $scope.followers = details.response.followers;
@@ -26,18 +27,53 @@ app.controller('userController', function($scope, $location, $routeParams, userS
                 });
             profileService.getDetails(user, userService.getToken())
                 .then(function(details) {
-                    $scope.name = details.response.name;
+                    $scope.profilePicture = details.response.user.Picture;
+                    $scope.name = details.response.user.Name;
                     $scope.books = details.response.books;
                     $scope.following = details.response.following;
                     $scope.followers = details.response.followers;
                 });
         }
     }
+    $scope.borrow = function(book) {
+        console.log(book);
+        borrowService.borrow(userID, book.ubid)
+            .then(function(response) {
+                Materialize.toast('<p class="flow-text white-text">' + response.data.message + '</p>', 2000);
+
+            })
+            .catch(function(error) {
+                Materialize.toast('<p class="flow-text red-text">' + error.data.message + '</p>', 2000);
+            });
+    }
+
     $scope.getFeaturedBooks = function() {
+        if ($scope.isMe == true) {
+            userService.updateBooks()
+                .then(function(books) {
+                    console.log(books)
+                    $scope.books = books
+                });
+        }
+        else {
+            profileService.getDetails(userID, userService.getToken())
+                .then(function(details) {
+                    $scope.profilePicture = details.response.user.Picture;
+                    $scope.name = details.response.user.Name;
+                    $scope.books = details.response.books;
+                    $scope.following = details.response.following;
+                    $scope.followers = details.response.followers;
+                });
+            followService.followed(userID)
+                .then(function(response) {
+                    $scope.followed = response.status;
+                });
+        }
         featuredBooksService.getBooks(userID) // NAME
             .then(function(featuredbooks) {
                 if (featuredbooks.length == 0) {
                     $scope.featured = 0;
+
                 }
                 else {
                     $scope.featured = featuredbooks.length;
@@ -88,6 +124,7 @@ app.controller('userController', function($scope, $location, $routeParams, userS
             .then(function(response) {
                 Materialize.toast('<p class="flow-text white-text">' + response + '</p>', 2000);
                 $scope.getFeaturedBooks();
+
             })
             .catch(function(error) {
                 Materialize.toast('<p class="flow-text red-text">' + error.data.message + '</p>', 2000);
@@ -97,6 +134,7 @@ app.controller('userController', function($scope, $location, $routeParams, userS
         //Page
         let user = $routeParams.userId;
         if (user == userService.getUuid()) {
+            $scope.profilePicture = userService.getPicture();
             $scope.name = userService.getUsername();
             $scope.books = userService.getBooks();
             $scope.following = userService.getFollowing();
@@ -108,7 +146,8 @@ app.controller('userController', function($scope, $location, $routeParams, userS
             userID = user;
             profileService.getDetails(userID, userService.getToken())
                 .then(function(details) {
-                    $scope.name = details.response.name;
+                    $scope.profilePicture = details.response.user.Picture;
+                    $scope.name = details.response.user.Name;
                     $scope.books = details.response.books;
                     $scope.following = details.response.following;
                     $scope.followers = details.response.followers;

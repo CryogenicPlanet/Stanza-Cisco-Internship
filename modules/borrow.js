@@ -167,7 +167,7 @@ function sendMail(email, message, res) {
             console.log('Message sent: %s', info.messageId);
             console.log("Email alert sent");
             res.status(200).json({
-                message: "Email alert sent"
+                message: "Your Request has been sent"
             });
             // Preview only available when sending through an Ethereal account
             console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));

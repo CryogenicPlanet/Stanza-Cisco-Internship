@@ -17,9 +17,9 @@ exports.addBook = async function(req, res, con, secret) {
         }
     }); // Get's User Id From JWT Token
     var book = {};
-    console.log(req.body);
+    console.log("Input");
+    console.log(req);
     if (req.body.image) {
-        
         book.image = sanitizer.escape(req.body.image);
     }
     else {

@@ -129,6 +129,10 @@ app.post('/followed',function(req, res) {
 app.get("/getSalt",function(req, res) {
    user.getSalt(req,res,con); 
 });
+app.get("/getBooks",function(req, res) {
+    console.log("get Books")
+    user.userBooks(req,res,con,app.get('jwtTokenSecret'));
+})
 app.get("/searchUser",function(req, res) {
     search.getUser(req,res,con);
 })

@@ -103,13 +103,8 @@ app.controller('addBookController', function($scope, userService, addBookService
             addBookService.addBook(newData);
         }
         else {
-            console.log(data);
-            var  newData = {
-               // name : $scope.searchBook,
-                year : $scope.year,
-                description : $scope.description
-            }
-            data.push(newData);
+            data.year = $scope.year;
+            data.description = $scope.description;
             if (!($("input[name=authors]:checked").val() == 'undefined')) {
                 var uaid = $("input[name=authors]:checked").val();
                 data.uaid = uaid;
@@ -122,11 +117,17 @@ app.controller('addBookController', function($scope, userService, addBookService
             } else {
                  Materialize.toast('<p class="flow-text green-text">Please Choose an Genre</p>', 2000);
             }
-            console.log(data);
+           // console.log(data);
             addBookService.addBook(data)
             .then(function(response){
                console.log(response); 
-            });
+                Materialize.toast('<p class="flow-text green-text">' + response + '</p>', 2000);
+                data = [];
+                setTimeout(window.location.reload(), 4000);
+            })
+            .catch(function(error) {
+                Materialize.toast('<p class="flow-text red-text">' + error + '</p>', 2000);
+            }); 
         }
     }
 });

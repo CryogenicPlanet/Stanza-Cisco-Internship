@@ -4,9 +4,6 @@ app.controller('homeController', function($scope, $location, newBooksService, bo
     $scope.openUser = function(user) {
         $location.path("/username/" + user.uuid + "/" + user.name);
     }
-    $scope.addBook = function() {
-        $location.path("/add");
-    }
 
     $scope.openAuthor = function(authorname) {
         $location.path("/authors/" + authorname);
@@ -27,18 +24,23 @@ app.controller('homeController', function($scope, $location, newBooksService, bo
         var token = userService.getToken();
         $scope.loading = true;
         $scope.page = false;
-        if (token) {
+        console.log(token);
+        if (token == null) {
+            console.log("login");
+            $location.path("/login");
+        }
+        else {
             $scope.homepage = true;
             newBooksService.get()
                 .then(function(responses) {
                     $scope.view = "books";
                     var rows = [];
-                    for(var x = 0;x< responses.length;){
-                      var books = [];
-                      books.push(responses[x]);
-                      books.push(responses[x+1]);
-                      x = x+2;
-                      rows.push(books);
+                    for (var x = 0; x < responses.length;) {
+                        var books = [];
+                        books.push(responses[x]);
+                        books.push(responses[x + 1]);
+                        x = x + 2;
+                        rows.push(books);
                     }
                     console.log(rows);
                     $scope.books = rows;
@@ -70,9 +72,6 @@ app.controller('homeController', function($scope, $location, newBooksService, bo
                         });
                     });
                 });
-        }
-        else {
-            $location.path("/login");
         }
 
     };
