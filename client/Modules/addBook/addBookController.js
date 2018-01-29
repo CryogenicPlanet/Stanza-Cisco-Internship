@@ -117,7 +117,7 @@ app.controller('addBookController', function($scope, userService, addBookService
             } else {
                  Materialize.toast('<p class="flow-text green-text">Please Choose an Genre</p>', 2000);
             }
-           // console.log(data);
+            console.log(data);
             addBookService.addBook(data)
             .then(function(response){
                console.log(response); 

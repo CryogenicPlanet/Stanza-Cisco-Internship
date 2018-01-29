@@ -66,7 +66,6 @@
 
     *[class*="notify"] {
       text-transform: initial;
-      cursor: pointer;
     }
 
     div[ng-show*="side"] {
@@ -134,188 +133,192 @@
               </div>
             </div>
           </li>
-          <li>
-            <div class="row">
-              <div class="col s6">
-                <div class="row center-align">
-                  <div class="col s3 center-align">
-                    <div ng-show="side_mine_selected">
-                      <a ng-click="getSentRequests(); side_mine_selected = !side_mine_selected; side_user_selected = false; side_borrow_selected = false; side_lent_selected = false;" class="waves-effect waves-light tooltipped" data-position="down" data-delay="50" data-tooltip="Requests you have sent"><i class = "material-icons white-text text-darken-3">input</i></a>
-                    </div>
-                    <div ng-show="!side_mine_selected">
-                      <a ng-click="getSentRequests(); side_mine_selected = !side_mine_selected; side_user_selected = false; side_borrow_selected = false; side_lent_selected = false;" class="waves-effect waves-light tooltipped" data-position="down" data-delay="50" data-tooltip="Requests you have sent"><i class = "material-icons grey-text text-darken-3 ">input</i></a>
-                    </div>
-                  </div>
-                  <div class="col s3 center-align">
-                    <div ng-show="side_user_selected">
-                      <a ng-click="getUserRequests(); side_user_selected = !side_user_selected; side_mine_selected = false; side_borrow_selected = false; side_lent_selected = false;" class="modal-trigger waves-effect waves-light tooltipped" data-position="down" data-delay="50"
-                        data-tooltip="Requests others have sent you"><i class = "material-icons white-text text-darken-3 ">move_to_inbox</i></a>
-                    </div>
-                    <div ng-show="!side_user_selected">
-                      <a ng-click="getUserRequests(); side_user_selected = !side_user_selected; side_mine_selected = false; side_borrow_selected = false; side_lent_selected = false;" class="modal-trigger waves-effect waves-light tooltipped" data-position="down" data-delay="50"
-                        data-tooltip="Requests others have sent you"><i class = "material-icons grey-text text-darken-3 ">move_to_inbox</i></a>
-                    </div>
-                  </div>
+          <div class="side-navContainer" style="height: 700px;overflow: auto;line-height: 35px;">
+            <li>
+              <div style="line-height:35px;">
+                <div class="row">
+                  <div class="col s6">
+                    <div class="row center-align">
+                      <div class="col s3 center-align">
+                        <div ng-show="side_mine_selected">
+                          <a ng-click="getSentRequests(); side_mine_selected = !side_mine_selected; side_user_selected = false; side_borrow_selected = false; side_lent_selected = false;" class="waves-effect waves-light tooltipped" data-position="down" data-delay="50" data-tooltip="Requests you have sent"><i class = "material-icons white-text text-darken-3">input</i></a>
+                        </div>
+                        <div ng-show="!side_mine_selected">
+                          <a ng-click="getSentRequests(); side_mine_selected = !side_mine_selected; side_user_selected = false; side_borrow_selected = false; side_lent_selected = false;" class="waves-effect waves-light tooltipped" data-position="down" data-delay="50" data-tooltip="Requests you have sent"><i class = "material-icons grey-text text-darken-3 ">input</i></a>
+                        </div>
+                      </div>
+                      <div class="col s3 center-align">
+                        <div ng-show="side_user_selected">
+                          <a ng-click="getUserRequests(); side_user_selected = !side_user_selected; side_mine_selected = false; side_borrow_selected = false; side_lent_selected = false;" class="modal-trigger waves-effect waves-light tooltipped" data-position="down" data-delay="50"
+                            data-tooltip="Requests others have sent you"><i class = "material-icons white-text text-darken-3 ">move_to_inbox</i></a>
+                        </div>
+                        <div ng-show="!side_user_selected">
+                          <a ng-click="getUserRequests(); side_user_selected = !side_user_selected; side_mine_selected = false; side_borrow_selected = false; side_lent_selected = false;" class="modal-trigger waves-effect waves-light tooltipped" data-position="down" data-delay="50"
+                            data-tooltip="Requests others have sent you"><i class = "material-icons grey-text text-darken-3 ">move_to_inbox</i></a>
+                        </div>
+                      </div>
 
-                  <div class="col s3 center-align">
-                    <div ng-show="side_borrow_selected">
-                      <a ng-click="getBorrowedBooks(); side_borrow_selected = !side_borrow_selected; side_user_selected = false; side_mine_selected = false; side_lent_selected = false;" class="modal-trigger  waves-effect waves-light tooltipped" data-position="down" data-delay="50"
-                        data-tooltip="Status of books you have borrowed"><i class = "material-icons white-text text-darken-3 ">book</i></a>
+                      <div class="col s3 center-align">
+                        <div ng-show="side_borrow_selected">
+                          <a ng-click="getBorrowedBooks(); side_borrow_selected = !side_borrow_selected; side_user_selected = false; side_mine_selected = false; side_lent_selected = false;" class="modal-trigger  waves-effect waves-light tooltipped" data-position="down" data-delay="50"
+                            data-tooltip="Status of books you have borrowed"><i class = "material-icons white-text text-darken-3 ">book</i></a>
+                        </div>
+                        <div ng-show="!side_borrow_selected">
+                          <a ng-click="getBorrowedBooks(); side_borrow_selected = !side_borrow_selected; side_user_selected = false; side_mine_selected = false; side_lent_selected = false;" class="modal-trigger  waves-effect waves-light tooltipped" data-position="down" data-delay="50"
+                            data-tooltip="Status of books you have borrowed"><i class = "material-icons grey-text  text-darken-3 ">book</i></a>
+                        </div>
+                        <!-- Status of books borrowed and option to return books -->
+                      </div>
+                      <div class="col s3 center-align">
+                        <div ng-show="side_lent_selected">
+                          <a ng-click="getLentBooksStatus(); side_lent_selected = !side_lent_selected; side_borrow_selected = false; side_mine_selected = false; side_user_selected = false;" class="modal-trigger waves-effect waves-light tooltipped" data-position="down" data-delay="50"
+                            data-tooltip="Status of your books"><i class = "material-icons white-text text-darken-3 ">import_contacts</i></a>
+                        </div>
+                        <div ng-show="!side_lent_selected">
+                          <a ng-click="getLentBooksStatus(); side_lent_selected = !side_lent_selected; side_borrow_selected = false; side_mine_selected = false; side_user_selected = false;" class="modal-trigger waves-effect waves-light tooltipped" data-position="down" data-delay="50"
+                            data-tooltip="Status of your books"><i class = "material-icons grey-text text-darken-3 ">import_contacts</i></a>
+                        </div>
+                        <!-- Status of your books -->
+                      </div>
                     </div>
-                    <div ng-show="!side_borrow_selected">
-                      <a ng-click="getBorrowedBooks(); side_borrow_selected = !side_borrow_selected; side_user_selected = false; side_mine_selected = false; side_lent_selected = false;" class="modal-trigger  waves-effect waves-light tooltipped" data-position="down" data-delay="50"
-                        data-tooltip="Status of books you have borrowed"><i class = "material-icons grey-text  text-darken-3 ">book</i></a>
-                    </div>
-                    <!-- Status of books borrowed and option to return books -->
                   </div>
-                  <div class="col s3 center-align">
-                    <div ng-show="side_lent_selected">
-                      <a ng-click="getLentBooksStatus(); side_lent_selected = !side_lent_selected; side_borrow_selected = false; side_mine_selected = false; side_user_selected = false;" class="modal-trigger waves-effect waves-light tooltipped" data-position="down" data-delay="50"
-                        data-tooltip="Status of your books"><i class = "material-icons white-text text-darken-3 ">import_contacts</i></a>
+                </div>
+                <div ng-show="side_mine_selected">
+                  <div ng-show="sentrequests.length == 0">
+                    <div class="center-align blue-grey darken-4 teal-text text-accent-4 name">You have not sent any requests</div>
+                  </div>
+                  <div ng-show="sentrequests.length > 0">
+                    <section class="teal darken-2">
+                      <div ng-repeat="request in sentrequests">
+                        <div class="center-align white-text name">You have sent a request for {{request.Book}} to {{request.Lender}}</div>
+                        <div class="center-align" ng-show="request.Status == 0">
+                          <div class="notify white grey-text text-lighten-1 black-text name">{{request.Lender}} has not yet responded</div>
+                        </div>
+                        <div class="center-align" ng-show="request.Status == 1">
+                          <div class="notify blue-grey darken-4 teal-text text-accent-4 name">{{request.Lender}} has accepted</div>
+                        </div>
+                        <div class="center-align" ng-show="request.Status == 2">
+                          <div class="notify blue-grey darken-4 red-text name">{{request.Lender}} has declined your request</div>
+                        </div>
+                        <div class="divider"></div>
+                      </div>
+                    </section>
+                  </div>
+                </div>
+                <div ng-show="side_user_selected">
+                  <div ng-show="requests.length == 0">
+                    <div class="center-align blue-grey darken-4 teal-text text-accent-4 name">
+                      You have not received any requests
                     </div>
-                    <div ng-show="!side_lent_selected">
-                      <a ng-click="getLentBooksStatus(); side_lent_selected = !side_lent_selected; side_borrow_selected = false; side_mine_selected = false; side_user_selected = false;" class="modal-trigger waves-effect waves-light tooltipped" data-position="down" data-delay="50"
-                        data-tooltip="Status of your books"><i class = "material-icons grey-text text-darken-3 ">import_contacts</i></a>
-                    </div>
-                    <!-- Status of your books -->
+                  </div>
+                  <div ng-show="requests.length > 0">
+                    <section class="teal darken-2">
+                      <div ng-repeat="request in requests">
+                        <div class="card-title center-align white-text name">You have a new request for your book {{request.Book}} by {{request.Borrower}}</div>
+                        <div ng-show="replysuccess(request.URID)">
+                          <div class="card-content center-align">
+                            <div class="notify waves-effect waves-light blue-grey darken-4 teal-text text-accent-4">You have responded to this request</div>
+                          </div>
+                        </div>
+                        <div ng-show="!replysuccess(request.URID)">
+                          <div class="card-content">
+                            <div class="row">
+                              <div class="col s3 offset-s1">
+                                <a ng-click="ReplyUserRequests(1, request)" class="notify waves-effect btn waves-darken hoverable teal">Accept</a>
+                              </div>
+                              <div class="col s3 offset-s3">
+                                <a ng-click="ReplyUserRequests(2, request)" class="notify waves-effect btn waves-light blue-grey hoverable darken-4">Decline</a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="divider"></div>
+                      </div>
+                    </section>
                   </div>
                 </div>
               </div>
-            </div>
-            <div ng-show="side_mine_selected">
-              <div ng-show="sentrequests.length == 0">
-                <div class="center-align blue-grey darken-4 teal-text text-accent-4 name">You have not sent any requests</div>
-              </div>
-              <div ng-show="sentrequests.length > 0">
-                <section class="teal darken-2">
-                  <div ng-repeat="request in sentrequests">
-                    <div class="center-align white-text name">You have sent a request for {{request.Book}} to {{request.Lender}}</div>
-                    <div class="center-align" ng-show="request.Status == 0">
-                      <div class="notify btn disabled black-text name">{{request.Lender}} has not yet responded</div>
-                    </div>
-                    <div class="center-align" ng-show="request.Status == 1">
-                      <a class="notify btn blue-grey darken-4 teal-text text-accent-4 name">{{request.Lender}} has accepted</a>
-                    </div>
-                    <div class="card-content center-align" ng-show="request.Status == 2">
-                      <a class="notify btn waves-effect disabled hoverable red teal-text text-accent-4 name">{{request.Lender}} has declined your request</a>
-                    </div>
-                    <div class="divider"></div>
+            </li>
+            <li>
+              <div style="line-height:35px;">
+                <div ng-show="side_borrow_selected">
+                  <div ng-show="borrowedbooks.length == 0">
+                    <div class="card-title blue-grey darken-4 teal-text text-accent-4 center-align">You have not borrowed any books</div>
                   </div>
-                </section>
-              </div>
-            </div>
-            <div ng-show="side_user_selected">
-              <div ng-show="requests.length == 0">
-                <div class="center-align blue-grey darken-4 teal-text text-accent-4 name">
-                  You have not received any requests
+                  <div ng-show="borrowedbooks.length > 0">
+                    <section class="teal darken-2">
+                      <div ng-repeat="book in borrowedbooks">
+                        <div class="card-title white-text center-align">You borrowed {{book.Bookname}} from {{book.Lender}} on {{book.borrowDate}}</div>
+                        <div ng-show="returnreqsuccess(book.UBOID)">
+                          <div class="card-content center-align">
+                            <div class="row">
+                              <div class="col s9 offset-s1">
+                                <div class="notify waves-effect waves-light white grey-text text-lighten-1">You have requested to return this book</div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div ng-show="!returnreqsuccess(book.UBOID)">
+                          <div class="card-content center-align" ng-show="book.Outstanding == 1 && book.ReturnRequest == 0">
+                            <a ng-click="returnBorrowedBook(book)" class="notify waves-effect btn hoverable">Return book</a>
+                          </div>
+                          <div class="card-content center-align" ng-show="book.Outstanding == 1 && book.ReturnRequest == 1">
+                            <div class="notify white grey-text text-lighten-1">{{book.Lender}} has yet to reply to your request to return the book</div>
+                          </div>
+                          <div class="card-content center-align" ng-show="book.Outstanding == 0">
+                            <div class="notify blue-grey darken-4 teal-text text-accent-4">You have already returned this book</div>
+                          </div>
+                        </div>
+                        <div class="divider"></div>
+                      </div>
+                    </section>
+                  </div>
+                </div>
+                <div ng-show="side_lent_selected">
+                  <div ng-show="lentbooks.length == 0">
+                    <div class="card-title center-align blue-grey darken-4 teal-text text-accent-4">You have not lent any books</div>
+                  </div>
+                  <div ng-show="lentbooks.length > 0">
+                    <section class="teal darken-2">
+                      <div ng-repeat="book in lentbooks">
+                        <div class="card-title white-text center-align">You lent "{{book.Bookname}}" to {{book.Borrower}} on {{book.borrowDate}}</div>
+                        <div ng-show="takebacksuccess(book.UBOID)">
+                          <div class="card-content center-align">
+                            <div class="row">
+                              <div class="col s9 offset-s1">
+                                <div class="notify waves-effect waves-light white grey-text text-lighten-1">You have accepted to take back the book</div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div ng-show="!takebacksuccess(book.UBOID)">
+                          <div class="card-content center-align" ng-show="book.Outstanding == 1 && book.ReturnRequest == 0">
+                            <div class="notify grey-text white text-lighten-1 text-accent-4">{{book.Borrower}} has yet to return this book</div>
+                          </div>
+                          <div class="card-content center-align" ng-show="book.Outstanding == 1 && book.ReturnRequest == 1">
+                            <div class="notify blue-grey darken-4 teal-text text-accent-4">{{book.Borrower}} has requested you to take back your book</div>
+                            <a ng-click="takeBackBook(book)" class="notify btn waves-effect hoverable blue">Take back book</a>
+                          </div>
+                          <div class="card-content center-align" ng-show="book.Outstanding == 0">
+                            <div class="notify blue-grey darken-4 teal-text text-accent-4">You have taken this book back</div>
+                          </div>
+                        </div>
+                        <div class="divider"></div>
+                      </div>
+                    </section>
+                  </div>
                 </div>
               </div>
-              <div ng-show="requests.length > 0">
-                <section class="teal darken-2">
-                  <div ng-repeat="request in requests">
-                    <div class="card-title center-align white-text name">You have a new request for your book {{request.Book}} by {{request.Borrower}}</div>
-                    <div ng-show="replysuccess(request.URID)">
-                      <div class="card-content center-align">
-                        <div class="row">
-                          <div class="col s8 offset-s2">
-                            <a class="notify waves-effect waves-light blue-grey darken-4 teal-text text-accent-4 btn">You have responded to this request</a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div ng-show="!replysuccess(request.URID)">
-                      <div class="card-content">
-                        <div class="row">
-                          <div class="col s3 offset-s1">
-                            <a ng-click="ReplyUserRequests(1, request)" class="notify waves-effect waves-darken btn teal">Accept</a>
-                          </div>
-                          <div class="col s3 offset-s3">
-                            <a ng-click="ReplyUserRequests(2, request)" class="notify waves-effect waves-light btn blue-grey darken-4">Decline</a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="divider"></div>
-                  </div>
-                </section>
-              </div>
-            </div>
-          </li>
-          <li>
-            <div ng-show="side_borrow_selected">
-              <div ng-show="borrowedbooks.length == 0">
-                <div class="card-title blue-grey darken-4 teal-text text-accent-4 center-align">You have not borrowed any books</div>
-              </div>
-              <div ng-show="borrowedbooks.length > 0">
-                <section class="teal darken-2">
-                  <div ng-repeat="book in borrowedbooks">
-                    <div class="card-title white-text center-align">You borrowed {{book.Bookname}} from {{book.Lender}} on {{book.borrowDate}}</div>
-                    <div ng-show="returnreqsuccess(book.UBOID)">
-                      <div class="card-content center-align">
-                        <div class="row">
-                          <div class="col s9 offset-s1">
-                            <a class="notify waves-effect waves-light btn grey">You have requested to return this book</a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div ng-show="!returnreqsuccess(book.UBOID)">
-                      <div class="card-content center-align" ng-show="book.Outstanding == 1 && book.ReturnRequest == 0">
-                        <a ng-click="returnBorrowedBook(book)" class="notify btn waves-effect hoverable">Return book</a>
-                      </div>
-                      <div class="card-content center-align" ng-show="book.Outstanding == 1 && book.ReturnRequest == 1">
-                        <a class="notify btn waves-effect hoverable">{{book.Lender}} has yet to reply to your request to return the book</a>
-                      </div>
-                      <div class="card-content center-align" ng-show="book.Outstanding == 0">
-                        <a class="notify btn blue-grey darken-4 teal-text text-accent-4">You have already returned this book</a>
-                      </div>
-                    </div>
-                    <div class="divider"></div>
-                  </div>
-                </section>
-              </div>
-            </div>
-            <div ng-show="side_lent_selected">
-              <div ng-show="lentbooks.length == 0">
-                <div class="card-title center-align blue-grey darken-4 teal-text text-accent-4">You have not lent any books</div>
-              </div>
-              <div ng-show="lentbooks.length > 0">
-                <section class="teal darken-2">
-                  <div ng-repeat="book in lentbooks">
-                    <div class="card-title white-text center-align">You lent "{{book.Bookname}}" to {{book.Borrower}} on {{book.borrowDate}}</div>
-                    <div ng-show="takebacksuccess(book.UBOID)">
-                      <div class="card-content center-align">
-                        <div class="row">
-                          <div class="col s9 offset-s1">
-                            <a class="notify waves-effect waves-light btn grey">You have accepted to take back the book</a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div ng-show="!takebacksuccess(book.UBOID)">
-                      <div class="card-content center-align" ng-show="book.Outstanding == 1 && book.ReturnRequest == 0">
-                        <a class="notify btn blue-grey darken-4 teal-text text-accent-4">{{book.Borrower}} has yet to return this book</a>
-                      </div>
-                      <div class="card-content center-align" ng-show="book.Outstanding == 1 && book.ReturnRequest == 1">
-                        <a class="notify btn blue-grey darken-4 teal-text text-accent-4">{{book.Borrower}} has requested you to take back your book</a>
-                        <a ng-click="takeBackBook(book)" class="notify btn waves-effect hoverable blue">Take back book</a>
-                      </div>
-                      <div class="card-content center-align" ng-show="book.Outstanding == 0">
-                        <a class="notify btn blue-grey darken-4 teal-text text-accent-4">You have taken this book back</a>
-                      </div>
-                    </div>
-                    <div class="divider"></div>
-                  </div>
-                </section>
-              </div>
-            </div>
-          </li>
-
-          <div class="Logout">
-            <div class="row">
-              <div class="col s1 offset-s12"><a ng-click="logout()" class="center-align waves-effect btn-large white-text">Logout</a></div>
-            </div>
+            </li>
           </div>
+          <li>
+            <div class="Logout">
+              <div class="row">
+                <div class="col s1 offset-s12"><a ng-click="logout()" class="center-align waves-effect btn-large white-text">Logout</a></div>
+              </div>
+            </div>
+
+          </li>
         </ul>
         <div class="fixed-action-btn left-align" style="left: 23px; right: auto;">
           <a ng-click="addBook()" class="modal-trigger waves-effect waves-light btn btn-large hoverable btn-floating teal darken-3">

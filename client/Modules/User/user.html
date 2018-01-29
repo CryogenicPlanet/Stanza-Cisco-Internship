@@ -110,32 +110,32 @@
                     -->
                     <div class="col s5" id="sidebar">
                         <div class="card-panel teal z-depth-0">
-                            <div class="FixedHeightContainer">
-                                <div class="row">
-                                    <div class="col s12">
-                                        <ul class="tabs">
-                                            <li class="tab"><a class="active teal-text" href="#followers">Followers</a></li>
-                                            <li class="tab"><a href="#following" class="teal-text">Following</a></li>
-                                        </ul>
-                                    </div>
-                                    <div id="followers" class="col s12">
-                                        <ul class="collection" id="followerslist">
-                                            <div ng-repeat="follower in followers">
-                                                <li class="collection-item">
-                                                    <a href="" ng-click="openUser(follower)">{{follower.name}}</a>
-                                                </li>
-                                            </div>
-                                        </ul>
-                                    </div>
-                                    <div id="following" class="col s12">
-                                        <ul class="collection" id="followinglist">
-                                            <div ng-repeat="follower in following">
-                                                <li id="followingitem" class="collection-item"><a href="" ng-click="openUser(follower)">{{follower.name}}</a></li>
-                                            </div>
-                                        </ul>
-                                    </div>
+
+                            <div class="row">
+                                <div class="col s12">
+                                    <ul class="tabs">
+                                        <li class="tab"><a class="active teal-text" href="#followers">Followers</a></li>
+                                        <li class="tab"><a href="#following" class="teal-text">Following</a></li>
+                                    </ul>
+                                </div>
+                                <div id="followers" class="col s12">
+                                    <ul class="collection" id="followerslist">
+                                        <div ng-repeat="follower in followers">
+                                            <li class="collection-item">
+                                                <a href="" ng-click="openUser(follower)">{{follower.name}}</a>
+                                            </li>
+                                        </div>
+                                    </ul>
+                                </div>
+                                <div id="following" class="col s12">
+                                    <ul class="collection" id="followinglist">
+                                        <div ng-repeat="follower in following">
+                                            <li id="followingitem" class="collection-item"><a href="" ng-click="openUser(follower)">{{follower.name}}</a></li>
+                                        </div>
+                                    </ul>
                                 </div>
                             </div>
+
                         </div>
                     </div>
                 </div>
