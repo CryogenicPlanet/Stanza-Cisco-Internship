@@ -1,6 +1,7 @@
 <script type="text/javascript" src="">
     document.getElementsByTagName('body')[0].style = "";
 </script>
+<!-- 
 <div class="spinner" ng-show="loading">
     <link rel="stylesheet" type="text/css" href="css/loading.css" />
     <div id="loader" bgcolor="#ffffff">
@@ -22,7 +23,7 @@
         <img id="book" src="Images/loading/book.png" />
     </div>
 </div>
-
+-->
 <div class="section grey darken-4" ng-show="page">
     <style type="text/css">
         a {
@@ -42,7 +43,7 @@
                                             <img class="activator responsive-img" ng-src="{{book.image}}">
                                         </div>
                                         <div class="card-content">
-                                            <span class="card-title activator grey-text text-darken-4"><a href = "" ng-click = "openBook(book)">{{book.bookname}}</a><i class="material-icons right">more_vert</i></span>
+                                            <span class="card-title activator white-text"><a href = "" ng-click = "openBook(book)">{{book.bookname}}</a><i class="material-icons right">more_vert</i></span>
                                             <p class="teal-text text-accent-4">Author: <a href="" ng-click="openAuthor(book.author)">{{book.author}}</a>, {{book.year}}</p>
                                             <p class="teal-text text-accent-4">Genre: <a href="" ng-click="openGenre(book.genre)">{{book.genre}}</a></p>
                                             <p class="teal-text text-accent-4">Owned By: <a href="" ng-click="openUser(book)">{{book.username}}</a></p>
@@ -55,7 +56,7 @@
                                             </p>
                                         </div>
                                         <div class="card-reveal grey darken-2 white-text">
-                                            <span class="card-title whitee-text"><h5>{{book.bookname}}</h5> <i class="material-icons right">close</i></span>
+                                            <span class="card-title white-text"><h5>{{book.bookname}}</h5> <i class="material-icons right">close</i></span>
                                             <div>
                                                 <h6>Published year: {{book.year}}</h6>
                                             </div>

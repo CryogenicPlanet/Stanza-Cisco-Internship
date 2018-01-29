@@ -297,11 +297,9 @@
 
 	}
 
-	.FixedHeightContainer {
-		float: right;
-		height: 5px;
-	}
+
 	.Logout {
     position: absolute;
     bottom: 5%;
+    margin-right: 5%;
 }

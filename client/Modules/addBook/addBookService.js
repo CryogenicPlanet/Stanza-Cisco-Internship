@@ -21,6 +21,7 @@ app.factory('addBookService', function($http, userService) {
                 data: data,
                 url: `./addBook` // Url
             }).then(function(responses) {
+                console.log(responses.data);
                 return responses.data.message;
             });
         }

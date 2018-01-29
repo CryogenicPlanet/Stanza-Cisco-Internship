@@ -1,17 +1,28 @@
 <div ng-controller="searchController">
     <div class="section grey darken-4">
-        <style type = "text/css">
-            a
-            {
-                color:white;
+        <style type="text/css">
+            a {
+                color: white;
+            }
+
+            .tabs .indicator {
+                background-color: teal;
             }
         </style>
         <div class="container">
             <div class="row">
                 <div class="col s10">
                     <ul class="tabs">
-                        <li class="tab col s6 blue-grey darken-4"><a class="active" href="#showBooks"><div class="teal-text text-accent-4">Books</div></a></li>
-                        <li class="tab col s6 blue-grey darken-4"><a href="#showUsers"><div class="teal-text text-accent-4">Users</div></a></li>
+                        <li class="tab col s6 blue-grey darken-4">
+                            <a class="active" href="#showBooks">
+                                <div class="teal-text text-accent-4">Books</div>
+                            </a>
+                        </li>
+                        <li class="tab col s6 blue-grey darken-4">
+                            <a href="#showUsers">
+                                <div class="teal-text text-accent-4">Users</div>
+                            </a>
+                        </li>
                     </ul>
                 </div>
                 <div id="showBooks" class="col s12">
@@ -28,8 +39,8 @@
                                     </li>
                                 </div>
                                 <div ng-show="noBooks">
-                                    <li class="collection-item avatar">
-                                        <span class="title">No Books Found.</span>
+                                    <li class="collection-item avatar blue-grey darken-4">
+                                        <span class="title teal-text text-accent-4">No Books Found.</span>
                                     </li>
                                 </div>
                         </div>

@@ -110,10 +110,18 @@ exports.borrowBooks = async function(req, res, con, secret) {
                 sendMail(lender.Email, message, res);
 
             }
+            else {
+                res.status(400).json({
+                    message: resMessage
+                });
+            }
 
         }
         catch (error) {
             console.log("Error :" + error.toString());
+            res.status(400).json({
+                message: resMessage
+            });
         }
 
     }
