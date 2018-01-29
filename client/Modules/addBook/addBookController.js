@@ -1,6 +1,6 @@
 var app = angular.module("quickbooks");
 app.controller('addBookController', function($scope, userService, addBookService) {
-    var data = []; //what does this do?
+    var data = {}; //what does this do? // []
     var isNew = false;
     angular.element(document).ready(function() {
         $('select').material_select();
@@ -100,33 +100,39 @@ app.controller('addBookController', function($scope, userService, addBookService
                 ubid: ubid,
                 description: document.getElementById("description").value
             }
-            addBookService.addBook(newData);
+            addBookService.addBook(newData)
+                .then(function(response) {
+                    Materialize.toast('<p class="flow-text green-text">' + response + '</p>', 2000);
+                });
         }
         else {
             console.log(data);
-            var  newData = {
-               // name : $scope.searchBook,
-                year : $scope.year,
-                description : $scope.description
-            }
-            data.push(newData);
+            data.year = $scope.year;
+            data.description = $scope.description;
             if (!($("input[name=authors]:checked").val() == 'undefined')) {
                 var uaid = $("input[name=authors]:checked").val();
                 data.uaid = uaid;
-            } else {
-                   Materialize.toast('<p class="flow-text green-text">Please Choose an Author</p>', 2000);
+            }
+            else {
+                Materialize.toast('<p class="flow-text green-text">Please Choose an Author</p>', 2000);
             }
             if (!($("input[name=genres]:checked").val() == 'undefined')) {
                 var ugid = $("input[name=genres]:checked").val();
                 data.ugid = ugid;
-            } else {
-                 Materialize.toast('<p class="flow-text green-text">Please Choose an Genre</p>', 2000);
+            }
+            else {
+                Materialize.toast('<p class="flow-text green-text">Please Choose an Genre</p>', 2000);
             }
             console.log(data);
             addBookService.addBook(data)
-            .then(function(response){
-               console.log(response); 
-            });
+                .then(function(response) {
+                    console.log(response);
+                    Materialize.toast('<p class="flow-text green-text">' + response + '</p>', 2000);
+                 //   setTimeout(window.location.reload(), 4000);
+                })
+                .catch(function(error) {
+                    Materialize.toast('<p class="flow-text red-text">' + error + '</p>', 2000);
+                });
         }
     }
 });

@@ -14,14 +14,15 @@ app.factory('addBookService', function($http, userService) {
     }
     addService.addBook = function(data) {
         { // Function to get add Books to profile
+        console.log(data);
             return $http({ // Function
                 method: "POST",
                 headers: { 'Content-Type': 'application/json', 'x-access-token': userService.getToken() }, // Setting Headers, Function call to get getToken() to send to db
-                data: JSON.stringify(data),
-                cache: true,
+                data: data,
                 url: `./addBook` // Url
             }).then(function(responses) {
-                return responses.data;
+                console.log(responses.data);
+                return responses.data.message;
             });
         }
     }

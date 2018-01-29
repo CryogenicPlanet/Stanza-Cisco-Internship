@@ -26,7 +26,7 @@
 14 verbose stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:226:5)
 15 verbose pkgid cisco-internship@0.1.0
 16 verbose cwd /home/ubuntu/workspace
-17 error Linux 4.9.74-c9
+17 error Linux 4.9.77-c9
 18 error argv "/home/ubuntu/.nvm/versions/node/v6.11.2/bin/node" "/home/ubuntu/.nvm/versions/node/v6.11.2/bin/npm" "start"
 19 error node v6.11.2
 20 error npm  v3.10.10

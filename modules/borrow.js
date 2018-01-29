@@ -110,10 +110,18 @@ exports.borrowBooks = async function(req, res, con, secret) {
                 sendMail(lender.Email, message, res);
 
             }
+            else {
+                res.status(400).json({
+                    message: resMessage
+                });
+            }
 
         }
         catch (error) {
             console.log("Error :" + error.toString());
+            res.status(400).json({
+                message: resMessage
+            });
         }
 
     }
@@ -167,7 +175,7 @@ function sendMail(email, message, res) {
             console.log('Message sent: %s', info.messageId);
             console.log("Email alert sent");
             res.status(200).json({
-                message: "Email alert sent"
+                message: "Your Request has been sent"
             });
             // Preview only available when sending through an Ethereal account
             console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));

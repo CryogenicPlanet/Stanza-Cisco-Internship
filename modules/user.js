@@ -48,8 +48,8 @@ exports.loginUser = async function(req, res, con, secret) { // Function to Login
 exports.getSalt = async function(req, res, con) {
     var salt;
     var email = req.headers['x-login-email'];
-  //  var test = sanitizer.escape("Hello World");
- //   console.log(test);
+    //  var test = sanitizer.escape("Hello World");
+    //   console.log(test);
     if (email == "new") {
         salt = randomstring.generate(8);
     }
@@ -106,7 +106,7 @@ exports.followerBooks = async function(req, res, con, secret) { // Function to c
                   2. Push this Object to the end array newbooks[]
         */
     } // The Above Stated process is repeated for every followers new book.
-  //  console.log(newbooks);
+    //  console.log(newbooks);
     res.status(200).json(newbooks); // The array of all these book objects is returned.
 };
 
@@ -125,7 +125,7 @@ exports.newUser = async function(req, res, con, secret) {
     else {
         email = sanitizer.escape(email);
         name = sanitizer.escape(name);
-        
+
         var insert = await con.query("INSERT INTO Users (Name, Email,Password,Salt) VALUES ('" + name + "','" + email + "','" + password + "','" + salt + "')");
         var payload = {
             email: email,
@@ -240,14 +240,16 @@ exports.userDetails = async function(req, res, con, secret) {
         this.uuid = uuid;
         this.name = username
     }
-  //  console.log(uuid);
+    //  console.log(uuid);
     // Get Basic User Details
     let [user] = await con.query(`SELECT * FROM Users WHERE UUID=${uuid}`);
-    let userbooks = await con.query(`SELECT * FROM ${"`User's Book`"} WHERE User=${uuid}`);
- //   console.log(`SELECT * FROM Following WHERE Following=${uuid}`);
-    let followersTable = await con.query(`SELECT * FROM Users WHERE UUID IN (SELECT User FROM Following WHERE Following=${uuid})`);
-    let followingTable = await con.query(`SELECT * FROM Users WHERE UUID IN (SELECT Following FROM Following WHERE User=${uuid})`);
-   // console.log(followingTable);
+    let userbooks = await con.query(`SELECT * FROM ${"`User's Book`"} A WHERE A.User=${uuid} AND A.Book NOT IN (SELECT B.User_Book FROM ${"`Featured Books`"} B WHERE B.User=${uuid})`);
+  //  console.log(`SELECT * FROM ${"`User's Book`"} A WHERE A.User=${uuid} AND A.UTID NOT IN (SELECT B.User_Book FROM ${"`Featured Books`"} B WHERE B.User=${uuid})`);
+  //  console.log(userbooks);
+    //   console.log(`SELECT * FROM Following WHERE Following=${uuid}`);
+    let followersTable = await con.query(`SELECT * FROM Users WHERE UUID IN (SELECT A.User FROM Following A WHERE A.Following=${uuid})`);
+    let followingTable = await con.query(`SELECT * FROM Users WHERE UUID IN (SELECT A.Following FROM Following A WHERE A.User=${uuid})`);
+    // console.log(followingTable);
     for (var userBook of userbooks) {
         let [book] = await con.query(`SELECT * FROM Books WHERE UBID=${userBook.Book}`);
         let [author] = await con.query(`SELECT Name FROM Authors WHERE UAID=${book.Author}`); // Getting Author's Name From the AuthorID Gotten From the Second Query
@@ -262,12 +264,13 @@ exports.userDetails = async function(req, res, con, secret) {
         followers.push(new users(follower.UUID, follower.Name));
     }
     for (var follow of followingTable) {
-    //    console.log(follow.Following);
+        //    console.log(follow.Following);
         following.push(new users(follow.UUID, follow.Name));
     }
+    //console.log(newbooks)
     var response = {
         uuid: uuid,
-        name: user.Name,
+        user: user,
         books: newbooks,
         followers: followers,
         following: following
@@ -276,7 +279,39 @@ exports.userDetails = async function(req, res, con, secret) {
         response
     })
 };
-
+exports.userBooks = async function(req, res, con, secret) {
+    var token = req.body.token || req.query.token || req.headers['x-access-token'];
+    var uuid;
+    jwt.verify(token, secret, function(err, decoded) {
+        if (err) {
+            return res.json({ success: false, message: 'Failed to authenticate token.' });
+        }
+        else {
+            // Everything is good
+            uuid = decoded.uuid;
+        }
+    });
+    var newbooks = [];
+    function NewBook(ubid, bookname, author, genre, year, description, image) {
+        this.ubid = ubid;
+        this.bookname = bookname;
+        this.author = author;
+        this.genre = genre;
+        this.year = year;
+        this.image = image;
+        this.description = description;
+        //   this.image = image
+    }
+    let userbooks = await con.query(`SELECT * FROM ${"`User's Book`"} WHERE User=${uuid} AND Book NOT IN (SELECT User_Book FROM  ${"`Featured Books`"} WHERE User=${uuid})`);
+    for (var userBook of userbooks) {
+        let [book] = await con.query(`SELECT * FROM Books WHERE UBID=${userBook.Book}`);
+        let [author] = await con.query(`SELECT Name FROM Authors WHERE UAID=${book.Author}`); // Getting Author's Name From the AuthorID Gotten From the Second Query
+        let [genre] = await con.query(`SELECT Name FROM Genres WHERE UGID=${book.Genre}`);
+        newbooks.push(new NewBook(userBook.Book, book.Name, author.Name, genre.Name, book.Year, userBook.Description, userBook.Image));
+    }
+   // console.log(newbooks);
+    res.status(200).json(newbooks);
+};
 exports.forgotPassword = async function(req, res, con) {
     var email = req.body.email;
     let [user] = await con.query(`SELECT * From Users WHERE Email=${email}`);
@@ -321,10 +356,10 @@ function sendMail(email, message) {
             if (error) {
                 return console.log(error);
             }
-        //    console.log('Message sent: %s', info.messageId);
+            //    console.log('Message sent: %s', info.messageId);
             console.log("Email alert sent");
             // Preview only available when sending through an Ethereal account
-          //  console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
+            //  console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
 
             // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@blurdybloop.com>
             // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...

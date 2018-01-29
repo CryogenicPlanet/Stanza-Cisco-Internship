@@ -1,3 +1,4 @@
+<!--
 <div class="spinner" ng-show="userloading">
     <link rel="stylesheet" type="text/css" href="css/loading.css" />
     <div id="loader" bgcolor="#212121">
@@ -18,22 +19,40 @@
         <img id="dot13" class="dots_l" src="Images/loading/dot13.svg" />
         <img id="book" src="Images/loading/book.png" />
     </div>
-</div>
+</div> -->
+<style type="text/css">
+    #followinglist {
+        max-height: 100px;
+        overflow: scroll;
+        list-style-type: none;
+        /* not sure if you need this. Hides bullet list dots */
+    }
+
+    #followerslist {
+        max-height: 100px;
+        overflow: scroll;
+        list-style-type: none;
+        /* not sure if you need this. Hides bullet list dots */
+    }
+    .tabs .indicator {
+        background-color: teal;
+    }
+</style>
 <div class="section grey darken-4" ng-show="userPage">
     <div class="row">
         <div class="s9 offset-s2">
             <div class="card-panel teal black-text col s8 offset-s1 z-depth-0">
                 <div class="row valign-wrapper">
                     <div class="col s3">
-                        <img src="https://thebenclark.files.wordpress.com/2014/03/facebook-default-no-profile-pic.jpg" alt="" class="circle responsive-img">
+                        <img ng-src="{{profilePicture}}" class="circle responsive-img">
                         <!-- notice the "circle" class -->
                     </div>
                     <!--Featured book next to profile pic-->
-                    <div class="col s3">
-                        <div class="row">
+                    <div class="col s2">
+                        <div class="row valign-wrapper">
                             <span class="black-text col s8 offset-s2">
-                            <h3>{{name}}</h3>
-                        </span>
+                                <h4>{{name}}</h4>
+                            </span>
                         </div>
                         <div class="row">
                             <div ng-if="!isMe">
@@ -55,6 +74,7 @@
                     </div>
 
                     <!-- featured books -->
+                    <!--
                     <div class="col s3" id="featured">
                         <h5>Featured Books</h5>
                         <div ng-show="featured == 0">
@@ -91,71 +111,209 @@
                             </div>
                         </div>
                     </div>
+                    -->
+                    <div class="col s5" id="sidebar">
+                        <div class="card-panel teal z-depth-0">
 
+                            <div class="row">
+                                <div class="col s12">
+                                    <ul class="tabs">
+                                        <li class="tab"><a class="active teal-text" href="#followers">Followers</a></li>
+                                        <li class="tab"><a href="#following" class="teal-text">Following</a></li>
+                                    </ul>
+                                </div>
+                                <div id="followers" class="col s12">
+                                    <ul class="collection" id="followerslist">
+                                        <div ng-repeat="follower in followers">
+                                            <li class="collection-item">
+                                                <a href="" ng-click="openUser(follower)">{{follower.name}}</a>
+                                            </li>
+                                        </div>
+                                    </ul>
+                                </div>
+                                <div id="following" class="col s12">
+                                    <ul class="collection" id="followinglist">
+                                        <div ng-repeat="follower in following">
+                                            <li id="followingitem" class="collection-item"><a href="" ng-click="openUser(follower)">{{follower.name}}</a></li>
+                                        </div>
+                                    </ul>
+                                </div>
+                            </div>
 
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
     <!--Feautred Books and Follower stuff-->
     <div class="row">
-        <div class="col s5 offset-s1" id="all">
-            <div class="card-panel grey darken-4 z-depth-0">
-                <div ng-show="books.length == 0">
-                    <div ng-if="isMe">
-                        <h5>You have no books</h5>
-                    </div>
-                    <div ng-if="!isMe">
-                        <h5>This person has no books</h5>
-                    </div>
-                </div>
-                <div ng-show="books.length > 0">
-                    <ul class="collection">
-                        <div ng-repeat="book in books">
-                            <li class="collection-item teal-text avatar">
-                                <img ng-src="{{book.image}}" alt="" class="circle materialboxed">
-                                <span class="title"><a href = "" class = "modal-trigger" ng-click = "openModal(book, false)">{{book.bookname}}</a></span>
-                                <p>By: <a href="" ng-click="openAuthor(book.author)">{{book.author}}</a>
-                                </p>
-                                <div ng-show="featured < 6">
-                                    <div ng-if="isMe">
-                                        <a href="" class="btn waves-effect teal accent-4" ng-click="addFeaturedBooks(book)">Add to featured books</a>
+        <div class="s9 offset-s2">
+            <div ng-if="featured != 0">
+                <div ng-if="books.length == 0">
+                    <div class="col s6 offset-s2" id="featured">
+                        <div class="card-panel white z-depth-0">
+                            <h5 class="center-align">Featured Books</h5>
+
+                            <div ng-if="featured == 1">
+                                <div class="row">
+                                    <div ng-repeat="featuredbook in featuredbooks">
+                                        <div class="col s12">
+                                            <a class="waves-effect waves-light modal-trigger" href="" ng-click="openModal(featuredbook, true)"><img class="responsive-img" ng-src = "{{featuredbook.image}}"></a>
+                                        </div>
                                     </div>
                                 </div>
-                                <p class="truncate"><a href="" class="modal-trigger" ng-click="openModal(book, false)">Description: {{book.description}}</a></p>
+                            </div>
+                            <div ng-if="featured == 2">
                                 <div class="row">
+                                    <div ng-repeat="featuredbook in featuredbooks">
+                                        <div class="col s6">
+                                            <a class="waves-effect waves-light modal-trigger" href="" ng-click="openModal(featuredbook, true)"><img class="responsive-img" ng-src = "{{featuredbook.image}}"></a>
+                                        </div>
+                                    </div>
                                 </div>
-                            </li>
+                            </div>
+                            <div ng-if="featured == 3">
+                                <div class="row">
+                                    <div ng-repeat="featuredbook in featuredbooks">
+                                        <div class="col s4">
+                                            <a class="waves-effect waves-light modal-trigger" href="" ng-click="openModal(featuredbook, true)"><img class="responsive-img" ng-src = "{{featuredbook.image}}"></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div ng-if="featured > 3">
+                                <div class="row">
+                                    <div ng-repeat="featuredbook in firsthalffeaturedbooks">
+                                        <div class="col s4">
+                                            <a class="waves-effect waves-light modal-trigger" href="" ng-click="openModal(featuredbook, true)"><img class="responsive-img" ng-src = "{{featuredbook.image}}"></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div ng-repeat="featuredbook in lasthalffeaturedbooks">
+                                        <div class="col s4">
+                                            <a class="waves-effect waves-light modal-trigger" href="" ng-click="openModal(featuredbook, true)"><img class="responsive-img" ng-src = "{{featuredbook.image}}"></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </ul>
+                    </div>
+                </div>
+
+                <div ng-if="books.length != 0">
+                    <div class="col s3 offset-s1" id="featured">
+                        <div class="card-panel white z-depth-0">
+                            <h5 class="center-align">Featured Books</h5>
+
+                            <div ng-if="featured == 1">
+                                <div class="row">
+                                    <div ng-repeat="featuredbook in featuredbooks">
+                                        <div class="col s12">
+                                            <a class="waves-effect waves-light modal-trigger" href="" ng-click="openModal(featuredbook, true)"><img class="responsive-img" ng-src = "{{featuredbook.image}}"></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div ng-if="featured == 2">
+                                <div class="row">
+                                    <div ng-repeat="featuredbook in featuredbooks">
+                                        <div class="col s6">
+                                            <a class="waves-effect waves-light modal-trigger" href="" ng-click="openModal(featuredbook, true)"><img class="responsive-img" ng-src = "{{featuredbook.image}}"></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div ng-if="featured == 3">
+                                <div class="row">
+                                    <div ng-repeat="featuredbook in featuredbooks">
+                                        <div class="col s4">
+                                            <a class="waves-effect waves-light modal-trigger" href="" ng-click="openModal(featuredbook, true)"><img class="responsive-img" ng-src = "{{featuredbook.image}}"></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div ng-if="featured > 3">
+                                <div class="row">
+                                    <div ng-repeat="featuredbook in firsthalffeaturedbooks">
+                                        <div class="col s4">
+                                            <a class="waves-effect waves-light modal-trigger" href="" ng-click="openModal(featuredbook, true)"><img class="responsive-img" ng-src = "{{featuredbook.image}}"></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div ng-repeat="featuredbook in lasthalffeaturedbooks">
+                                        <div class="col s4">
+                                            <a class="waves-effect waves-light modal-trigger" href="" ng-click="openModal(featuredbook, true)"><img class="responsive-img" ng-src = "{{featuredbook.image}}"></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
+            <div ng-if="featured == 0">
+                <div class="col s6 offset-s2" id="all">
+                    <div ng-show="books.length > 0">
+                        <div class="card-panel white z-depth-0">
 
+
+                            <ul class="collection">
+                                <div ng-repeat="book in books">
+                                    <li class="collection-item teal-text avatar">
+                                        <img ng-src="{{book.image}}" alt="" class="circle materialboxed">
+                                        <span class="title"><a href = "" class = "modal-trigger" ng-click = "openModal(book, false)">{{book.bookname}}</a></span>
+                                        <p>By: <a href="" ng-click="openAuthor(book.author)">{{book.author}}</a>
+                                        </p>
+                                        <div ng-show="featured < 6">
+                                            <div ng-if="isMe">
+                                                <a href="" class="btn waves-effect teal accent-4" ng-click="addFeaturedBooks(book)">Add to featured books</a>
+                                            </div>
+                                        </div>
+                                        <p class="truncate"><a href="" class="modal-trigger" ng-click="openModal(book, false)">Description: {{book.description}}</a></p>
+                                        <div class="row">
+                                        </div>
+                                    </li>
+                                </div>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div ng-if="featured != 0">
+                <div class="col s4 offset-s1" id="all">
+                    <div ng-show="books.length > 0">
+                        <div class="card-panel white z-depth-0">
+
+                            <ul class="collection">
+                                <div ng-repeat="book in books">
+                                    <li class="collection-item teal-text avatar">
+                                        <img ng-src="{{book.image}}" alt="" class="circle materialboxed">
+                                        <span class="title"><a href = "" class = "modal-trigger" ng-click = "openModal(book, false)">{{book.bookname}}</a></span>
+                                        <p>By: <a href="" ng-click="openAuthor(book.author)">{{book.author}}</a>
+                                        </p>
+                                        <div ng-show="featured < 6">
+                                            <div ng-if="isMe">
+                                                <a href="" class="btn waves-effect teal accent-4" ng-click="addFeaturedBooks(book)">Add to featured books</a>
+                                            </div>
+                                        </div>
+                                        <p class="truncate"><a href="" class="modal-trigger" ng-click="openModal(book, false)">Description: {{book.description}}</a></p>
+                                        <div class="row">
+                                        </div>
+                                    </li>
+                                </div>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
 
         <!--Followers tab-->
-        <div class="col s3" id="sidebar">
-            <div class="card-panel grey darken-4 z-depth-0">
-                <div class="row">
-                    <div class="col s12 ">
-                        <ul class="tabs">
-                            <li class="tab"><a class="active teal-text" href="#followers">Followers</a></li>
-                            <li class="tab"><a href="#following" class="teal-text">Following</a></li>
-                        </ul>
-                    </div>
-                    <div id="followers" class="col s12">
-                        <div class="collection">
-                            <div ng-repeat="follower in followers"> <a href="" ng-click="openUser(follower)" class="collection-item">{{follower.name}}</a></div>
-                        </div>
-                    </div>
-                    <div id="following" class=" col s12">
-                        <div class="collection">
-                            <div ng-repeat="follower in following"> <a href="" ng-click="openUser(follower)" class="collection-item">{{follower.name}}</a></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+
 
 
     </div>
@@ -164,27 +322,32 @@
     <div id="modal" class="modal modal-fixed-footer white">
         <div class="row">
             <div class="modal-content">
-                <div class="col s6 black">
+                <div class="col s6 center-align">
                     <img class="responsive-img" ng-src="{{modalbook.image}}">
                 </div>
-                <div class="col s6 grey darken-4">
-                    <h4>{{modalbook.bookname}} By {{modalbook.author}}</h4>
-                    <h5>{{modalbook.genre}}</h5>
+                <div class="col s6 white darken-4">
+                    <h4>{{modalbook.bookname}}</h4>
+                    <h5>By {{modalbook.author}}</h5>
+                    <h6>{{modalbook.genre}}</h6>
                     <div class="divider"></div>
                     <p>{{modalbook.description}}</p>
                 </div>
             </div>
         </div>
         <div class="modal-footer white">
-            <div ng-show="modalfeatured">
-                <a ng-click="removeFeaturedBooks(modalbook)" class="modal-action modal-close waves-effect waves-green btn-flat teal accent-4 s2 white-text">Remove from featured books</a>
+            <div ng-if="isMe">
+                <div ng-if="modalfeatured">
+                    <a ng-click="removeFeaturedBooks(modalbook)" class="modal-action modal-close waves-effect waves-green btn-flat teal accent-4 s2 white-text">Remove from featured books</a>
+                </div>
+                <div ng-if="!modalfeatured">
+                    <a class="modal-action modal-close waves-effect waves-green btn-flat teal accent-4 s2 white-text" ng-click="addFeaturedBooks(modalbook)">Add to featured books</a>
+                </div>
             </div>
-            <div ng-show="!modalfeatured">
+            <div ng-show="!isMe">
                 <a ng-click="borrow(modalbook)" id="borrowBtn" class="modal-action modal-close waves-effect waves-green btn-flat teal accent-4 s2 white-text">Borrow</a>
             </div>
         </div>
 
-        <a ng-click="logout()" id="logoutBtn" class="btn waves-effect waves-teal grey darken-4">Logout</a></li>
     </div>
 </div>
 

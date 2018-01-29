@@ -17,20 +17,25 @@ exports.addBook = async function(req, res, con, secret) {
         }
     }); // Get's User Id From JWT Token
     var book = {};
+    console.log("Input");
     console.log(req.body);
     if (req.body.image) {
-        
         book.image = sanitizer.escape(req.body.image);
     }
     else {
         book.image = "https://raw.githubusercontent.com/CryogenicPlanet/Cisco-internship/master/Images/books.jpeg";
     }
     if (req.body.ubid) { // If Book Already Exists and User Chooses This
+    try {
         addUserbook(con, uuid, req.body.ubid, sanitizer.escape(req.body.description), sanitizer.escape(book.image));
         var message = {
             message: "Sucessfully Added"
         };
+        console.log("Sucessfully Added");
         res.status(200).json(message); // Exits Code Here
+    } catch (ex){
+        console.log(ex.toString());
+    }
     }
     else {
         // By This Point We know book doesn't already Exsist
@@ -71,6 +76,7 @@ exports.addBook = async function(req, res, con, secret) {
                 var message = {
                     message: "Sucessfully Added"
                 };
+                console.log("Sucessfully Added");
                 res.status(200).json(message);
             }
         }
@@ -78,8 +84,10 @@ exports.addBook = async function(req, res, con, secret) {
     }
 }
 var addUserbook = async function(con, uuid, ubid, description, image) {
-    let [addUserBooks] = await con.query(`INSERT INTO ${"`User's Book`"} (User,Book,Description,Image) VALUES (${uuid},${ubid},"${description}","${image}")`);
+    let addUserBooks = await con.query(`INSERT INTO ${"`User's Book`"} (User,Book,Description,Image) VALUES (${uuid},${ubid},"${description}","${image}")`);
+  
 }
+// Not below here
 var addNewBookDb = async function(con, name, uaid, ugid, year) {
     try {
         let [addBookDB] = await con.query(`INSERT INTO Books (Name,Author,Genre,Year) VALUES ("${name}",${uaid},${ugid},${year})`);

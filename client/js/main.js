@@ -46,7 +46,7 @@ app.config(function($routeProvider) { // Making the Router Provider
             controller: "searchController"
         });
 });
-app.controller('baseController', function($scope, $location, newBooksService, borrowService, userService, searchService, requestsService, borrowedBooksService) {
+app.controller('baseController', function($scope, $location,$route, newBooksService, borrowService, userService, searchService, requestsService, borrowedBooksService) {
     var uuid, name;
     $scope.side_mine_selected;
     $scope.side_user_selected;
@@ -64,6 +64,9 @@ app.controller('baseController', function($scope, $location, newBooksService, bo
         userService.getDetails();
         uuid = userService.getUuid();
         name = userService.getUsername();
+        $scope.name = name;
+        $scope.email = userService.getEmail();
+        $scope.picture = userService.getPicture();
         angular.element(document).ready(function() {
             $('.button-collapse').sideNav({
                 menuWidth: 300, // Default is 300
@@ -89,6 +92,9 @@ app.controller('baseController', function($scope, $location, newBooksService, bo
         // console.log(uuid + name);
         $location.path("/username/" + uuid + "/" + name);
     }
+    $scope.addBook = function() {
+        $location.path("/add");
+    }
     $scope.openMineModal = function() {
         //  $('#modal1').modal('open');
         //  $('.button-collapse').sideNav('show');
@@ -102,6 +108,19 @@ app.controller('baseController', function($scope, $location, newBooksService, bo
     $scope.openLentModal = function() {
         $('#modal4').modal('open');
     }
+    $scope.logout = function() {
+        localStorage.clear();
+        sessionStorage.clear();
+        Materialize.toast('<p class="flow-text red-text">' + "You have been logged out" + '</p>', 2000);
+        var path = $location.path();
+        if (path != "/"){
+             $location.path("/");
+        } else {
+            $route.reload();
+        }
+       
+        
+    }
     $scope.getUserRequests = function() {
         requestsService.getRequests()
             .then(function(requests) {
@@ -110,7 +129,7 @@ app.controller('baseController', function($scope, $location, newBooksService, bo
                     $scope.expelreplyid(request.URID);
                 }
                 if (requests.length == 0) {
-                       //Materialize.toast('<p class="flow-text green-text">You have no book <br> requests!!</p>', 2000);
+                    //Materialize.toast('<p class="flow-text green-text">You have no book <br> requests!!</p>', 2000);
                 }
             })
             .catch(function(err) {
