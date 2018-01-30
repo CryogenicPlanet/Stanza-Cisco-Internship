@@ -1,5 +1,5 @@
 //Environment Variables
-var port = process.env.PORT || 3000; // Port of server
+var port = process.env.PORT || 8080; // Port of server
 //var dbPassword = process.env.Db;
 //Libraries
 var getenv = require('getenv'); // Library for Enviroment Variables, Used for Db Conn
