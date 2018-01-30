@@ -1,47 +1,238 @@
 0 info it worked if it ends with ok
 1 verbose cli [ '/home/ubuntu/.nvm/versions/node/v6.11.2/bin/node',
 1 verbose cli   '/home/ubuntu/.nvm/versions/node/v6.11.2/bin/npm',
-1 verbose cli   'start' ]
+1 verbose cli   'install' ]
 2 info using npm@3.10.10
 3 info using node@v6.11.2
-4 verbose run-script [ 'prestart', 'start', 'poststart' ]
-5 info lifecycle cisco-internship@0.1.0~prestart: cisco-internship@0.1.0
-6 silly lifecycle cisco-internship@0.1.0~prestart: no script for prestart, continuing
-7 info lifecycle cisco-internship@0.1.0~start: cisco-internship@0.1.0
-8 verbose lifecycle cisco-internship@0.1.0~start: unsafe-perm in lifecycle true
-9 verbose lifecycle cisco-internship@0.1.0~start: PATH: /home/ubuntu/.nvm/versions/node/v6.11.2/lib/node_modules/npm/bin/node-gyp-bin:/home/ubuntu/workspace/node_modules/.bin:/home/ubuntu/.nvm/versions/node/v6.11.2/bin:/usr/local/rvm/gems/ruby-2.4.0/bin:/usr/local/rvm/gems/ruby-2.4.0@global/bin:/usr/local/rvm/rubies/ruby-2.4.0/bin:/mnt/shared/bin:/home/ubuntu/workspace/node_modules/.bin:/home/ubuntu/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/mnt/shared/sbin:/opt/gitl:/opt/go/bin:/mnt/shared/c9/app.nw/bin:/usr/local/rvm/bin
-10 verbose lifecycle cisco-internship@0.1.0~start: CWD: /home/ubuntu/workspace
-11 silly lifecycle cisco-internship@0.1.0~start: Args: [ '-c', 'node server.js' ]
-12 silly lifecycle cisco-internship@0.1.0~start: Returned: code: 1  signal: null
-13 info lifecycle cisco-internship@0.1.0~start: Failed to exec start script
-14 verbose stack Error: cisco-internship@0.1.0 start: `node server.js`
-14 verbose stack Exit status 1
-14 verbose stack     at EventEmitter.<anonymous> (/home/ubuntu/.nvm/versions/node/v6.11.2/lib/node_modules/npm/lib/utils/lifecycle.js:255:16)
-14 verbose stack     at emitTwo (events.js:106:13)
-14 verbose stack     at EventEmitter.emit (events.js:191:7)
-14 verbose stack     at ChildProcess.<anonymous> (/home/ubuntu/.nvm/versions/node/v6.11.2/lib/node_modules/npm/lib/utils/spawn.js:40:14)
-14 verbose stack     at emitTwo (events.js:106:13)
-14 verbose stack     at ChildProcess.emit (events.js:191:7)
-14 verbose stack     at maybeClose (internal/child_process.js:891:16)
-14 verbose stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:226:5)
-15 verbose pkgid cisco-internship@0.1.0
-16 verbose cwd /home/ubuntu/workspace
-17 error Linux 4.9.77-c9
-18 error argv "/home/ubuntu/.nvm/versions/node/v6.11.2/bin/node" "/home/ubuntu/.nvm/versions/node/v6.11.2/bin/npm" "start"
-19 error node v6.11.2
-20 error npm  v3.10.10
-21 error code ELIFECYCLE
-22 error cisco-internship@0.1.0 start: `node server.js`
-22 error Exit status 1
-23 error Failed at the cisco-internship@0.1.0 start script 'node server.js'.
-23 error Make sure you have the latest version of node.js and npm installed.
-23 error If you do, this is most likely a problem with the cisco-internship package,
-23 error not with npm itself.
-23 error Tell the author that this fails on your system:
-23 error     node server.js
-23 error You can get information on how to open an issue for this project with:
-23 error     npm bugs cisco-internship
-23 error Or if that isn't available, you can get their info via:
-23 error     npm owner ls cisco-internship
-23 error There is likely additional logging output above.
-24 verbose exit [ 1, true ]
+4 silly loadCurrentTree Starting
+5 silly install loadCurrentTree
+6 silly install readLocalPackageData
+7 silly install normalizeTree
+8 silly loadCurrentTree Finishing
+9 silly loadIdealTree Starting
+10 silly install loadIdealTree
+11 silly cloneCurrentTree Starting
+12 silly install cloneCurrentTreeToIdealTree
+13 silly cloneCurrentTree Finishing
+14 silly loadShrinkwrap Starting
+15 silly install loadShrinkwrap
+16 silly loadShrinkwrap Finishing
+17 silly loadAllDepsIntoIdealTree Starting
+18 silly install loadAllDepsIntoIdealTree
+19 silly loadAllDepsIntoIdealTree Finishing
+20 silly loadIdealTree Finishing
+21 silly currentTree cisco-internship@0.1.0
+21 silly currentTree ├── @types/bluebird@3.5.20
+21 silly currentTree ├── @types/mysql@2.15.2
+21 silly currentTree ├── @types/node@9.4.0
+21 silly currentTree ├── array-uniq@1.0.2
+21 silly currentTree ├── base64url@2.0.0
+21 silly currentTree ├── bignumber.js@4.0.4
+21 silly currentTree ├── bluebird@3.5.1
+21 silly currentTree ├─┬ body-parser@1.18.2
+21 silly currentTree │ ├── bytes@3.0.0
+21 silly currentTree │ ├── debug@2.6.9
+21 silly currentTree │ └── qs@6.5.1
+21 silly currentTree ├── buffer-crc32@0.2.1
+21 silly currentTree ├── buffer-equal-constant-time@1.0.1
+21 silly currentTree ├── bytes@0.2.0
+21 silly currentTree ├── commander@0.6.1
+21 silly currentTree ├─┬ connect@3.6.5
+21 silly currentTree │ └── debug@2.6.9
+21 silly currentTree ├── content-type@1.0.4
+21 silly currentTree ├── cookie-signature@1.0.1
+21 silly currentTree ├── cookie@0.1.0
+21 silly currentTree ├── core-util-is@1.0.2
+21 silly currentTree ├── cors@2.8.4
+21 silly currentTree ├── debug@3.0.1
+21 silly currentTree ├── depd@1.1.1
+21 silly currentTree ├── ecdsa-sig-formatter@1.0.9
+21 silly currentTree ├── ee-first@1.1.1
+21 silly currentTree ├── encodeurl@1.0.1
+21 silly currentTree ├── escape-html@1.0.3
+21 silly currentTree ├─┬ express@3.2.6
+21 silly currentTree │ ├─┬ connect@2.7.11
+21 silly currentTree │ │ ├── cookie@0.0.5
+21 silly currentTree │ │ └── send@0.1.1
+21 silly currentTree │ └── mime@1.2.11
+21 silly currentTree ├─┬ finalhandler@1.0.6
+21 silly currentTree │ └── debug@2.6.9
+21 silly currentTree ├── formidable@1.0.14
+21 silly currentTree ├── fresh@0.1.0
+21 silly currentTree ├── fuse.js@3.2.0
+21 silly currentTree ├── getenv@0.7.0
+21 silly currentTree ├── http-errors@1.6.2
+21 silly currentTree ├── iconv-lite@0.4.19
+21 silly currentTree ├── inherits@2.0.3
+21 silly currentTree ├── isarray@1.0.0
+21 silly currentTree ├─┬ jsonwebtoken@8.1.1
+21 silly currentTree │ └── ms@2.1.1
+21 silly currentTree ├── jwa@1.1.5
+21 silly currentTree ├── jws@3.1.4
+21 silly currentTree ├── lodash.includes@4.3.0
+21 silly currentTree ├── lodash.isboolean@3.0.3
+21 silly currentTree ├── lodash.isinteger@4.0.4
+21 silly currentTree ├── lodash.isnumber@3.0.3
+21 silly currentTree ├── lodash.isplainobject@4.0.6
+21 silly currentTree ├── lodash.isstring@4.0.1
+21 silly currentTree ├── lodash.once@4.1.1
+21 silly currentTree ├── media-typer@0.3.0
+21 silly currentTree ├── methods@0.0.1
+21 silly currentTree ├── mime-db@1.30.0
+21 silly currentTree ├── mime-types@2.1.17
+21 silly currentTree ├── mkdirp@0.3.4
+21 silly currentTree ├── ms@2.0.0
+21 silly currentTree ├── mysql@2.15.0
+21 silly currentTree ├── nodemailer@4.4.2
+21 silly currentTree ├── object-assign@4.1.1
+21 silly currentTree ├── on-finished@2.3.0
+21 silly currentTree ├── parseurl@1.3.2
+21 silly currentTree ├── pause@0.0.1
+21 silly currentTree ├── process-nextick-args@1.0.7
+21 silly currentTree ├── promise-mysql@3.2.0
+21 silly currentTree ├── qs@0.6.5
+21 silly currentTree ├── randomstring@1.1.5
+21 silly currentTree ├── range-parser@0.0.4
+21 silly currentTree ├─┬ raw-body@2.3.2
+21 silly currentTree │ └── bytes@3.0.0
+21 silly currentTree ├── readable-stream@2.3.3
+21 silly currentTree ├── safe-buffer@5.1.1
+21 silly currentTree ├── sanitizer@0.1.3
+21 silly currentTree ├─┬ send@0.1.0
+21 silly currentTree │ └── mime@1.2.6
+21 silly currentTree ├── setprototypeof@1.0.3
+21 silly currentTree ├── sha512@0.0.1
+21 silly currentTree ├── sqlstring@2.3.0
+21 silly currentTree ├── statuses@1.3.1
+21 silly currentTree ├── string_decoder@1.0.3
+21 silly currentTree ├── type-is@1.6.15
+21 silly currentTree ├── unpipe@1.0.0
+21 silly currentTree ├── util-deprecate@1.0.2
+21 silly currentTree ├── utils-merge@1.0.1
+21 silly currentTree ├── vary@1.1.1
+21 silly currentTree └── xtend@4.0.1
+22 silly idealTree cisco-internship@0.1.0
+22 silly idealTree ├── @types/bluebird@3.5.20
+22 silly idealTree ├── @types/mysql@2.15.2
+22 silly idealTree ├── @types/node@9.4.0
+22 silly idealTree ├── array-uniq@1.0.2
+22 silly idealTree ├── base64url@2.0.0
+22 silly idealTree ├── bignumber.js@4.0.4
+22 silly idealTree ├── bluebird@3.5.1
+22 silly idealTree ├─┬ body-parser@1.18.2
+22 silly idealTree │ ├── bytes@3.0.0
+22 silly idealTree │ ├── debug@2.6.9
+22 silly idealTree │ └── qs@6.5.1
+22 silly idealTree ├── buffer-crc32@0.2.1
+22 silly idealTree ├── buffer-equal-constant-time@1.0.1
+22 silly idealTree ├── bytes@0.2.0
+22 silly idealTree ├── commander@0.6.1
+22 silly idealTree ├─┬ connect@3.6.5
+22 silly idealTree │ └── debug@2.6.9
+22 silly idealTree ├── content-type@1.0.4
+22 silly idealTree ├── cookie-signature@1.0.1
+22 silly idealTree ├── cookie@0.1.0
+22 silly idealTree ├── core-util-is@1.0.2
+22 silly idealTree ├── cors@2.8.4
+22 silly idealTree ├── debug@3.0.1
+22 silly idealTree ├── depd@1.1.1
+22 silly idealTree ├── ecdsa-sig-formatter@1.0.9
+22 silly idealTree ├── ee-first@1.1.1
+22 silly idealTree ├── encodeurl@1.0.1
+22 silly idealTree ├── escape-html@1.0.3
+22 silly idealTree ├─┬ express@3.2.6
+22 silly idealTree │ ├─┬ connect@2.7.11
+22 silly idealTree │ │ ├── cookie@0.0.5
+22 silly idealTree │ │ └── send@0.1.1
+22 silly idealTree │ └── mime@1.2.11
+22 silly idealTree ├─┬ finalhandler@1.0.6
+22 silly idealTree │ └── debug@2.6.9
+22 silly idealTree ├── formidable@1.0.14
+22 silly idealTree ├── fresh@0.1.0
+22 silly idealTree ├── fuse.js@3.2.0
+22 silly idealTree ├── getenv@0.7.0
+22 silly idealTree ├── http-errors@1.6.2
+22 silly idealTree ├── iconv-lite@0.4.19
+22 silly idealTree ├── inherits@2.0.3
+22 silly idealTree ├── isarray@1.0.0
+22 silly idealTree ├─┬ jsonwebtoken@8.1.1
+22 silly idealTree │ └── ms@2.1.1
+22 silly idealTree ├── jwa@1.1.5
+22 silly idealTree ├── jws@3.1.4
+22 silly idealTree ├── lodash.includes@4.3.0
+22 silly idealTree ├── lodash.isboolean@3.0.3
+22 silly idealTree ├── lodash.isinteger@4.0.4
+22 silly idealTree ├── lodash.isnumber@3.0.3
+22 silly idealTree ├── lodash.isplainobject@4.0.6
+22 silly idealTree ├── lodash.isstring@4.0.1
+22 silly idealTree ├── lodash.once@4.1.1
+22 silly idealTree ├── media-typer@0.3.0
+22 silly idealTree ├── methods@0.0.1
+22 silly idealTree ├── mime-db@1.30.0
+22 silly idealTree ├── mime-types@2.1.17
+22 silly idealTree ├── mkdirp@0.3.4
+22 silly idealTree ├── ms@2.0.0
+22 silly idealTree ├── mysql@2.15.0
+22 silly idealTree ├── nodemailer@4.4.2
+22 silly idealTree ├── object-assign@4.1.1
+22 silly idealTree ├── on-finished@2.3.0
+22 silly idealTree ├── parseurl@1.3.2
+22 silly idealTree ├── pause@0.0.1
+22 silly idealTree ├── process-nextick-args@1.0.7
+22 silly idealTree ├── promise-mysql@3.2.0
+22 silly idealTree ├── qs@0.6.5
+22 silly idealTree ├── randomstring@1.1.5
+22 silly idealTree ├── range-parser@0.0.4
+22 silly idealTree ├─┬ raw-body@2.3.2
+22 silly idealTree │ └── bytes@3.0.0
+22 silly idealTree ├── readable-stream@2.3.3
+22 silly idealTree ├── safe-buffer@5.1.1
+22 silly idealTree ├── sanitizer@0.1.3
+22 silly idealTree ├─┬ send@0.1.0
+22 silly idealTree │ └── mime@1.2.6
+22 silly idealTree ├── setprototypeof@1.0.3
+22 silly idealTree ├── sha512@0.0.1
+22 silly idealTree ├── sqlstring@2.3.0
+22 silly idealTree ├── statuses@1.3.1
+22 silly idealTree ├── string_decoder@1.0.3
+22 silly idealTree ├── type-is@1.6.15
+22 silly idealTree ├── unpipe@1.0.0
+22 silly idealTree ├── util-deprecate@1.0.2
+22 silly idealTree ├── utils-merge@1.0.1
+22 silly idealTree ├── vary@1.1.1
+22 silly idealTree └── xtend@4.0.1
+23 silly generateActionsToTake Starting
+24 silly install generateActionsToTake
+25 silly generateActionsToTake Finishing
+26 silly diffTrees action count 0
+27 silly decomposeActions action count 0
+28 silly runTopLevelLifecycles Starting
+29 silly install runPreinstallTopLevelLifecycles
+30 silly rollbackFailedOptional Starting
+31 silly rollbackFailedOptional Finishing
+32 silly runTopLevelLifecycles Finishing
+33 silly install printInstalled
+34 verbose stack Error: Unsupported engine for cisco-internship@0.1.0: wanted: {"npm":"5.4.2","node":">=8.0.0"} (current: {"node":"6.11.2","npm":"3.10.10"})
+34 verbose stack     at checkEngine (/home/ubuntu/.nvm/versions/node/v6.11.2/lib/node_modules/npm/node_modules/npm-install-checks/index.js:13:14)
+34 verbose stack     at module.exports.isInstallable (/home/ubuntu/.nvm/versions/node/v6.11.2/lib/node_modules/npm/lib/install/validate-args.js:38:3)
+34 verbose stack     at actions.(anonymous function) (/home/ubuntu/.nvm/versions/node/v6.11.2/lib/node_modules/npm/lib/install/actions.js:52:14)
+34 verbose stack     at execAction (/home/ubuntu/.nvm/versions/node/v6.11.2/lib/node_modules/npm/lib/install/actions.js:114:7)
+34 verbose stack     at exports.doOne (/home/ubuntu/.nvm/versions/node/v6.11.2/lib/node_modules/npm/lib/install/actions.js:119:3)
+34 verbose stack     at Array.<anonymous> (/home/ubuntu/.nvm/versions/node/v6.11.2/lib/node_modules/npm/node_modules/slide/lib/bind-actor.js:15:8)
+34 verbose stack     at LOOP (/home/ubuntu/.nvm/versions/node/v6.11.2/lib/node_modules/npm/node_modules/slide/lib/chain.js:15:14)
+34 verbose stack     at chain (/home/ubuntu/.nvm/versions/node/v6.11.2/lib/node_modules/npm/node_modules/slide/lib/chain.js:20:5)
+34 verbose stack     at Object.Installer.runPreinstallTopLevelLifecycles (/home/ubuntu/.nvm/versions/node/v6.11.2/lib/node_modules/npm/lib/install.js:540:3)
+34 verbose stack     at Array.<anonymous> (/home/ubuntu/.nvm/versions/node/v6.11.2/lib/node_modules/npm/node_modules/slide/lib/bind-actor.js:15:8)
+35 verbose pkgid cisco-internship@0.1.0
+36 verbose cwd /home/ubuntu/workspace
+37 error Linux 4.9.77-c9
+38 error argv "/home/ubuntu/.nvm/versions/node/v6.11.2/bin/node" "/home/ubuntu/.nvm/versions/node/v6.11.2/bin/npm" "install"
+39 error node v6.11.2
+40 error npm  v3.10.10
+41 error code ENOTSUP
+42 error notsup Unsupported engine for cisco-internship@0.1.0: wanted: {"npm":"5.4.2","node":">=8.0.0"} (current: {"node":"6.11.2","npm":"3.10.10"})
+43 error notsup Not compatible with your version of node/npm: cisco-internship@0.1.0
+44 error notsup Not compatible with your version of node/npm: cisco-internship@0.1.0
+44 error notsup Required: {"npm":"5.4.2","node":">=8.0.0"}
+44 error notsup Actual:   {"npm":"3.10.10","node":"6.11.2"}
+45 verbose exit [ 1, true ]
