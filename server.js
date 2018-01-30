@@ -1,6 +1,6 @@
 //Environment Variables
-var port = process.env.PORT; // Port of server
-var dbPassword = process.env.Db;
+//var port = process.env.PORT; // Port of server
+//var dbPassword = process.env.Db;
 //Libraries
 var getenv = require('getenv'); // Library for Enviroment Variables, Used for Db Conn
 var mysql = require('promise-mysql'); // Mysql Library, With Node Promises
@@ -31,10 +31,10 @@ var server = app.listen(port); // Set Port
 //DataBase connection using promises
 var con = null; 
 mysql.createConnection({
-    host: getenv('IP'),
-    user: getenv('C9_USER'),
-    password: "Cisco",
-    database: "c9"
+    host: "eu-cdbr-west-02.cleardb.net",
+    user: "bc39631e06346b",
+    password: "e2d1104b",
+    database: "heroku_6d8e9115d45b810"
 }).then(function(connection) { con = connection });
 
 app.use("/", express.static("./client/")); // HERE
