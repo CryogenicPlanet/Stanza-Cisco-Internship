@@ -23,5 +23,8 @@
     "randomstring": "^1.1.5",
     "sanitizer": "^0.1.3",
     "sha512": "0.0.1"
+  },
+  "engines": {
+    "npm": "5.4.2"
   }
 }
