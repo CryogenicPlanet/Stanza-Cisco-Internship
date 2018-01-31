@@ -78,6 +78,7 @@ app.controller('homeController', function($scope, $location, newBooksService, bo
     $scope.borrow = function(book) {
         borrowService.borrow(book.uuid, book.ubid)
             .then(function(response) {
+                console.log(response);
                 Materialize.toast('<p class="flow-text white-text">' + response.data.message + '</p>', 2000);
 
             })
