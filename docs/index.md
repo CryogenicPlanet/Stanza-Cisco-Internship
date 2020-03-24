@@ -2,8 +2,10 @@
 
 ## Access to Project
 
-**http://stanzabooks.herokuapp.com/#!/** Website link
+[**http://stanzabooks.herokuapp.com/#!/**](http://stanzabooks.herokuapp.com/#!/) Website link
+
 Dummy user
+
 Email : rahultarak12345@gmail.com
 Password : 12345
 
