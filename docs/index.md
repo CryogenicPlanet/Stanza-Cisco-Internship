@@ -1,4 +1,4 @@
-# Stanza-Cisco-Internship
+# Stanza | Cisco Internship
 
 ## Access to Project
 
