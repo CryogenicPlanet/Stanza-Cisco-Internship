@@ -7,6 +7,7 @@
 Dummy user
 
 Email : rahultarak12345@gmail.com
+
 Password : 12345
 
 
@@ -26,10 +27,16 @@ This was a project made in collaboration with Cisco, this platform is a communit
 
 
 ## Team
-The project was made with a team of six high school students- [Rahul Tarak]( https://github.com/CryogenicPlanet), [Rithvik Mahindra](https://github.com/Nexus987), [Baalateja Kataru](https://github.com/BK-Modding),[Harika Bhogaraju](https://github.com/HarikaBhogaraju), [Yeshwant Kethineni](https://github.com/YeshYyyK) and [Prafulla Sujatha Nagesh](https://github.com/popxxisjustaflower) 
+The project was made with a team of six high school students 
+-[Rahul Tarak]( https://github.com/CryogenicPlanet)
+-[Rithvik Mahindra](https://github.com/Nexus987)
+-[Baalateja Kataru](https://github.com/BK-Modding)
+-[Harika Bhogaraju](https://github.com/HarikaBhogaraju)
+-[Yeshwant Kethineni](https://github.com/YeshYyyK) 
+-[Prafulla Sujatha Nagesh](https://github.com/popxxisjustaflower) 
 
 
 
 ## Development Repositories
 
-To see development of each feature sepearately visit https://github.com/CryogenicPlanet/Cisco-internship For Front-End and https://github.com/CryogenicPlanet/cisco-backend For Back-End Code
+To see development of each feature sepearately visit [https://github.com/CryogenicPlanet/Cisco-internship](https://github.com/CryogenicPlanet/Cisco-internship) For Front-End and [https://github.com/CryogenicPlanet/cisco-backend](https://github.com/CryogenicPlanet/cisco-backend) For Back-End Code
