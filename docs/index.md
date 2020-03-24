@@ -28,12 +28,13 @@ This was a project made in collaboration with Cisco, this platform is a communit
 
 ## Team
 The project was made with a team of six high school students 
--[Rahul Tarak]( https://github.com/CryogenicPlanet)
--[Rithvik Mahindra](https://github.com/Nexus987)
--[Baalateja Kataru](https://github.com/BK-Modding)
--[Harika Bhogaraju](https://github.com/HarikaBhogaraju)
--[Yeshwant Kethineni](https://github.com/YeshYyyK) 
--[Prafulla Sujatha Nagesh](https://github.com/popxxisjustaflower) 
+
+- [Rahul Tarak]( https://github.com/CryogenicPlanet)
+- [Rithvik Mahindra](https://github.com/Nexus987)
+- [Baalateja Kataru](https://github.com/BK-Modding)
+- [Harika Bhogaraju](https://github.com/HarikaBhogaraju)
+- [Yeshwant Kethineni](https://github.com/YeshYyyK) 
+- [Prafulla Sujatha Nagesh](https://github.com/popxxisjustaflower) 
 
 
 
