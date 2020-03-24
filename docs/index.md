@@ -40,4 +40,4 @@ The project was made with a team of six high school students
 
 ## Development Repositories
 
-To see development of each feature sepearately visit [https://github.com/CryogenicPlanet/Cisco-internship](https://github.com/CryogenicPlanet/Cisco-internship) For Front-End and [https://github.com/CryogenicPlanet/cisco-backend](https://github.com/CryogenicPlanet/cisco-backend) For Back-End Code
+To see development of each feature sepearately visit [Front-End](https://github.com/CryogenicPlanet/Cisco-internship) and [Back-end](https://github.com/CryogenicPlanet/cisco-backend)
